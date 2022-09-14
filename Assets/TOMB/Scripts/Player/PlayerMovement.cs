@@ -7,7 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     private CharacterController characterController;
     [SerializeField] private float moveSpeed;
-    [SerializeField] private GameObject target;
+    private Monster[] target;
     private Vector3 moveVec;
     private float moveH;
     private float moveV;
@@ -17,14 +17,20 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
-
+        target = FindObjectsOfType<Monster>();
     }
 
     private void Update()
     {
         Jump();
         Move();
-        if (Input.GetButtonDown("Fire1")) { target.GetComponent<IDamagable>().TakeDamage(10f);  }
+        if (Input.GetButtonDown("Fire1")) 
+        {
+            for (int i = 0; i < target.Length; i++)
+            { 
+                target[i].GetComponent<IDamagable>().TakeDamage(10f); 
+            }
+        }
     }
 
     private void Jump()

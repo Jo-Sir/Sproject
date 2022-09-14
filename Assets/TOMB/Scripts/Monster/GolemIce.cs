@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skeleton : Monster, IDamagable
+public class GolemIce : Monster, IDamagable
 {
     #region State
     private IEnumerator Idle()

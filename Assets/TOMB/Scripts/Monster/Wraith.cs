@@ -2,8 +2,28 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Skeleton : Monster, IDamagable
+public class Wraith : Monster, IDamagable
 {
+    public override float Hp 
+    { 
+        get => base.Hp;
+        set
+        {
+            base.hp = value;
+            if (hp <= 0)
+            {
+                ChangeState(State.Die);
+            }
+            else if (Hp < MaxHp)
+            {
+                ChangeState(State.Hit);
+                if (Hp <= MaxHp * 0.5f)
+                {
+                    moveSpeed *= 2f;
+                }
+            }
+        }
+    }
     #region State
     private IEnumerator Idle()
     {
@@ -39,7 +59,6 @@ public class Skeleton : Monster, IDamagable
             }
             if (FindAttackTarget() && !animator.GetBool("Attack"))
             {
-                animator.SetBool("Walk", false);
                 ChangeState(State.Attack);
             }
             yield return new WaitForSeconds(0.1f);
@@ -51,7 +70,6 @@ public class Skeleton : Monster, IDamagable
         animator.SetInteger("RanAttack", Random.Range(0, attackPattern));
         yield return null;
         ChangeState(State.Idle);
-
     }
     private IEnumerator Hit()
     {
