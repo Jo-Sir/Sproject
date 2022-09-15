@@ -63,6 +63,7 @@ public class GolemIce : Monster, IDamagable
     {
         animator.SetTrigger("Die");
         yield return new WaitForSeconds(1.5f);
+        DropItem();
         gameObject.SetActive(false);
     }
     #endregion State

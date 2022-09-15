@@ -91,6 +91,21 @@ public class Monster : MonoBehaviour
         }
         return attackTarget != null;
     }
+    protected void DropItem()
+    {
+        GameObject obj = null;
+        if (Random.Range(0, 2)==0)
+        {
+            obj = ObjectPoolManager.Instance.GetObject(KeyType.ItemHeal);
+        }
+        else
+        {
+            obj = ObjectPoolManager.Instance.GetObject(KeyType.ItemAmmo);
+        }
+        Vector3 itemposition = this.transform.position;
+        itemposition.y = this.transform.rotation.y + 0.9f;
+        obj.transform.position = itemposition;
+    }
     public void TakeDamage(float damage)
     {
 

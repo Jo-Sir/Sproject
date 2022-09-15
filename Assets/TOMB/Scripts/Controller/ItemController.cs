@@ -7,6 +7,7 @@ public class ItemController : MonoBehaviour
     [SerializeField] private DropItem item;
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private float range;
+    [SerializeField] private KeyType keyType;
     private void Update()
     {
         PlayerCheck();
@@ -26,6 +27,7 @@ public class ItemController : MonoBehaviour
                 {
                     item.Use();
                     // 오브젝트 풀링의 반환
+                    ObjectPoolManager.Instance.ReturnObject(this.gameObject, keyType);
                 }
             }
             

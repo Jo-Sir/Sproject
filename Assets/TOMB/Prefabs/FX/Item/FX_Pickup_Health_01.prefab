@@ -4840,6 +4840,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   range: 3
+  keyType: 0
 --- !u!1 &4354316301045799828
 GameObject:
   m_ObjectHideFlags: 0

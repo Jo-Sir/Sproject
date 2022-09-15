@@ -4839,6 +4839,8 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 8
+  range: 3
+  keyType: 1
 --- !u!1 &2984710114901574193
 GameObject:
   m_ObjectHideFlags: 0

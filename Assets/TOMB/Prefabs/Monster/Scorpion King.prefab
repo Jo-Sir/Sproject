@@ -511,6 +511,7 @@ MonoBehaviour:
   maxHp: 100
   hp: 0
   moveSpeed: 2
+  attackDamage: 0
   attackPattern: 4
   targetLayerMask:
     serializedVersion: 2
