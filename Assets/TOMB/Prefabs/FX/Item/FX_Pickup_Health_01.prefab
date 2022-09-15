@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4351623184808292866}
   - component: {fileID: 4515826037287418874}
   - component: {fileID: 4515004727198620442}
+  - component: {fileID: 6640070329706630712}
   m_Layer: 1
   m_Name: FX_Pickup_Health_01
   m_TagString: Untagged
@@ -4822,6 +4823,23 @@ ParticleSystemRenderer:
   m_MeshWeighting2: 1
   m_MeshWeighting3: 1
   m_MaskInteraction: 0
+--- !u!114 &6640070329706630712
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4354149772327653934}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 39fb0105fe2de2c489478a68ce3328bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 285563814d2739c4d891193652121090, type: 2}
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  range: 3
 --- !u!1 &4354316301045799828
 GameObject:
   m_ObjectHideFlags: 0

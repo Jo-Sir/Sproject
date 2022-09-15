@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 640f0f695032df54495ee36a6b9c69b5, type: 3}
+  m_Name: DropHealItem
+  m_EditorClassIdentifier: 
+  name: Heal
+  prefab: {fileID: 4354149772327653934, guid: 9ee1d8d3be2665e45898e9fcfe09cd1f, type: 3}
+  heal: 50

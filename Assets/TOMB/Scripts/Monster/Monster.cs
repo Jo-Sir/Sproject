@@ -65,9 +65,9 @@ public class Monster : MonoBehaviour
     }
     protected bool FindTarget()
     {
-        Vector3 onwertrasform = transform.position;
-        onwertrasform.y = transform.position.y + 1f;
-        Collider[] target = Physics.OverlapSphere(onwertrasform, TargetInRage, TargetLayerMask);
+        Vector3 onwertransform = transform.position;
+        onwertransform.y = transform.position.y + 1f;
+        Collider[] target = Physics.OverlapSphere(onwertransform, TargetInRage, TargetLayerMask);
         if (target.Length > 0)
         {
             traceTarget = target[0].gameObject;
