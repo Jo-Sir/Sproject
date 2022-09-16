@@ -1,0 +1,91 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class BossMonster : Monster
+{
+    private void OnDisable()
+    {
+        Debug.Log("º¸½º»ç¸Á");
+    }
+    public override float Hp
+    {
+        get => base.Hp;
+        set
+        {
+            base.hp = value;
+            if (hp <= 0)
+            {
+                ChangeState(State.Die);
+            }
+            else if (Hp < MaxHp)
+            {
+                ChangeState(State.Hit);
+                if (Hp <= MaxHp * 0.5f)
+                {
+                    moveSpeed *= 2f;
+                }
+            }
+        }
+    }
+    #region State
+    private IEnumerator Idle()
+    {
+        animator.SetBool("Hit", false);
+        while (true)
+        {
+            if (!animator.GetBool("Attack"))
+            {
+                if (FindTarget())
+                {
+                    ChangeState(State.Trace);
+                }
+                else if (FindAttackTarget())
+                {
+                    ChangeState(State.Attack);
+                }
+            }
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+    private IEnumerator Trace()
+    {
+        while (true)
+        {
+            animator.SetBool("Walk", (traceTarget != null));
+            if (traceTarget != null) agent.destination = traceTarget.transform.position;
+            if (!FindTarget())
+            {
+                traceTarget = null;
+                animator.SetBool("Walk", (traceTarget != null));
+                agent.ResetPath();
+                ChangeState(State.Idle);
+            }
+            if (FindAttackTarget() && !animator.GetBool("Attack"))
+            {
+                ChangeState(State.Attack);
+            }
+            yield return new WaitForSeconds(0.1f);
+        }
+    }
+    private IEnumerator Attack()
+    {
+        animator.SetBool("Attack", FindAttackTarget());
+        animator.SetInteger("RanAttack", Random.Range(0, attackPattern));
+        yield return null;
+        ChangeState(State.Idle);
+    }
+    private IEnumerator Hit()
+    {
+        animator.SetBool("Hit", true);
+        yield return null;
+        ChangeState(State.Idle);
+    }
+    private IEnumerator Die()
+    {
+        animator.SetTrigger("Die");
+        yield return new WaitForSeconds(1.5f);
+        gameObject.SetActive(false);
+    }
+    #endregion State
+}

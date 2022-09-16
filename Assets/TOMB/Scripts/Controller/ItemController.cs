@@ -22,7 +22,7 @@ public class ItemController : MonoBehaviour
             if (distanceToTarget > Mathf.Pow(0.1f, 2))
             {
                 // 등속이동
-                transform.position = Vector3.MoveTowards(transform.position, target[0].transform.position, 0.05f);
+                transform.position = Vector3.MoveTowards(transform.position, target[0].transform.position, 0.1f);
                 if (distanceToTarget < Mathf.Pow(1f, 2))
                 {
                     item.Use();

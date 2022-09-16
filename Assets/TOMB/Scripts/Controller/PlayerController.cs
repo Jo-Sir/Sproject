@@ -20,11 +20,15 @@ public class PlayerController : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         hp = MaxHp;
-        monsters = FindObjectsOfType<Monster>();
+        
     }
 
     private void Update()
     {
+        if (monsters is null)
+        {
+            monsters = FindObjectsOfType<Monster>();
+        }
         if (Input.GetButtonDown("Fire1"))
         {
             for (int i = 0; i < monsters.Length; i++)

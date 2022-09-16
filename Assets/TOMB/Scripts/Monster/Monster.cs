@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
-public class Monster : MonoBehaviour
+public class Monster : MonoBehaviour, IDamagable
 {
     public enum State { Idle, Trace, Attack, Hit, Die }
     protected State curState;
+    [Header("Key")]
+    [SerializeField] protected KeyType keyType;
     [Header("Stats")]
     [SerializeField] protected float maxHp;
     [SerializeField] protected float hp;
@@ -33,16 +35,16 @@ public class Monster : MonoBehaviour
         get { return hp; }
         set
         {
-                hp = value;
-                if (hp <= 0)
-                {
-                    ChangeState(State.Die);
-                }
-                else if (Hp < MaxHp)
-                {
-                    ChangeState(State.Hit);
-                }
-            
+            hp = value;
+            if (hp <= 0)
+            {
+                ChangeState(State.Die);
+            }
+            else if (Hp < MaxHp)
+            {
+                ChangeState(State.Hit);
+            }
+
         }
     }
     private void Awake()
@@ -51,11 +53,11 @@ public class Monster : MonoBehaviour
         animator = GetComponent<Animator>();
         Hp = MaxHp;
         curState = State.Idle;
-        ChangeState(curState);
+        
     }
-    private void Update()
+    private void OnEnable()
     {
-        Debug.Log("ป๓ลย : " + curState.ToString());
+        ChangeState(curState);
     }
     protected void ChangeState(State nextState)
     {
@@ -94,7 +96,7 @@ public class Monster : MonoBehaviour
     protected void DropItem()
     {
         GameObject obj = null;
-        if (Random.Range(0, 2)==0)
+        if (Random.Range(0, 2) == 0)
         {
             obj = ObjectPoolManager.Instance.GetObject(KeyType.ItemHeal);
         }
@@ -103,16 +105,16 @@ public class Monster : MonoBehaviour
             obj = ObjectPoolManager.Instance.GetObject(KeyType.ItemAmmo);
         }
         Vector3 itemposition = this.transform.position;
-        itemposition.y = this.transform.rotation.y + 0.9f;
+        itemposition.y = 1f;
         obj.transform.position = itemposition;
     }
     public void TakeDamage(float damage)
     {
 
-            if (Hp > 0)
-            {
-                Hp -= damage;
-            }
+        if (Hp > 0)
+        {
+            Hp -= damage;
+        }
 
     }
     private void OnDrawGizmosSelected()

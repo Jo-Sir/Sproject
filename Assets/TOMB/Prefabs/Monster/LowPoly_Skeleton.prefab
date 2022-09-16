@@ -1067,7 +1067,7 @@ GameObject:
   m_Component:
   - component: {fileID: 3369803722343219871}
   - component: {fileID: 3369803722352267871}
-  - component: {fileID: 3369803722454240882}
+  - component: {fileID: 1835281193883897880}
   - component: {fileID: 3369803722454240881}
   m_Layer: 6
   m_Name: LowPoly_Skeleton
@@ -1114,7 +1114,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &3369803722454240882
+--- !u!114 &1835281193883897880
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1123,19 +1123,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 3369803722343042133}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f056336da598de544b4591718b6cb658, type: 3}
+  m_Script: {fileID: 11500000, guid: 993ad2e2b94aaae4686737267e009b44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keyType: 5
   maxHp: 100
   hp: 0
-  moveSpeed: 1
-  attackDamage: 0
+  moveSpeed: 2.5
+  attackDamage: 1
   attackPattern: 3
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  targetInRage: 4
-  attackRange: 1.5
+  targetInRage: 4.4
+  attackRange: 1.2
 --- !u!195 &3369803722454240881
 NavMeshAgent:
   m_ObjectHideFlags: 0

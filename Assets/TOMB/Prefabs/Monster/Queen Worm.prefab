@@ -522,8 +522,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9219412796178409572}
   - component: {fileID: 2959361676548928030}
+  - component: {fileID: -4191683877795421807}
   - component: {fileID: 2111749316}
-  - component: {fileID: 2111749315}
   m_Layer: 6
   m_Name: Queen Worm
   m_TagString: Untagged
@@ -569,6 +569,29 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &-4191683877795421807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8411105330407666398}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 993ad2e2b94aaae4686737267e009b44, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyType: 4
+  maxHp: 100
+  hp: 0
+  moveSpeed: 2.5
+  attackDamage: 2.5
+  attackPattern: 3
+  targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  targetInRage: 5.1
+  attackRange: 1.9
 --- !u!195 &2111749316
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -591,28 +614,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2111749315
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8411105330407666398}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 51e7143f2dba88746b1aabefbcd02e78, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 100
-  hp: 0
-  moveSpeed: 0.5
-  attackDamage: 0
-  attackPattern: 3
-  targetLayerMask:
-    serializedVersion: 2
-    m_Bits: 8
-  targetInRage: 3.9
-  attackRange: 2.5
 --- !u!1 &9036317808643626471
 GameObject:
   m_ObjectHideFlags: 0

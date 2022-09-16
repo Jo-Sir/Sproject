@@ -5776,8 +5776,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6156587998573066612}
   - component: {fileID: 256904185769665294}
+  - component: {fileID: 3654328488455437796}
   - component: {fileID: 1008529938115788885}
-  - component: {fileID: 2451580303362904931}
   m_Layer: 6
   m_Name: Wraith
   m_TagString: Untagged
@@ -5823,6 +5823,29 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &3654328488455437796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6790100607610987470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f3aee50eec8a66049bc0a32cb564d597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  keyType: 6
+  maxHp: 200
+  hp: 0
+  moveSpeed: 3.5
+  attackDamage: 3.5
+  attackPattern: 4
+  targetLayerMask:
+    serializedVersion: 2
+    m_Bits: 8
+  targetInRage: 3.8
+  attackRange: 1.9
 --- !u!195 &1008529938115788885
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -5845,28 +5868,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &2451580303362904931
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6790100607610987470}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34f1487c7ce495a48b0025e66149435e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHp: 200
-  hp: 0
-  moveSpeed: 2
-  attackDamage: 0
-  attackPattern: 4
-  targetLayerMask:
-    serializedVersion: 2
-    m_Bits: 8
-  targetInRage: 4.2
-  attackRange: 1.9
 --- !u!1 &6976167253829221451
 GameObject:
   m_ObjectHideFlags: 0

@@ -260,7 +260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5118216201496742468}
   - component: {fileID: 1290178282890793022}
-  - component: {fileID: 187269078}
+  - component: {fileID: -6288664832047004033}
   - component: {fileID: 187269079}
   m_Layer: 6
   m_Name: Golem Ice
@@ -317,7 +317,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &187269078
+--- !u!114 &-6288664832047004033
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -326,19 +326,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 5497872771397226750}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6406c5ffdee9b564a9fdbe89173d3b04, type: 3}
+  m_Script: {fileID: 11500000, guid: 993ad2e2b94aaae4686737267e009b44, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keyType: 3
   maxHp: 100
   hp: 0
-  moveSpeed: 2
-  attackDamage: 0
+  moveSpeed: 2.5
+  attackDamage: 1
   attackPattern: 4
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  targetInRage: 5
-  attackRange: 2
+  targetInRage: 3.7
+  attackRange: 1.7
 --- !u!195 &187269079
 NavMeshAgent:
   m_ObjectHideFlags: 0
