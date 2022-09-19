@@ -39,12 +39,10 @@ public class Monster : MonoBehaviour, IDamagable
             if (hp <= 0)
             {
                 ChangeState(State.Die);
-            }
-            else if (Hp < MaxHp)
+            }else if (Hp > 0 || Hp < MaxHp )
             {
                 ChangeState(State.Hit);
             }
-
         }
     }
     private void Awake()
@@ -53,7 +51,6 @@ public class Monster : MonoBehaviour, IDamagable
         animator = GetComponent<Animator>();
         Hp = MaxHp;
         curState = State.Idle;
-        
     }
     private void OnEnable()
     {
@@ -96,21 +93,16 @@ public class Monster : MonoBehaviour, IDamagable
     protected void DropItem()
     {
         GameObject obj = null;
-        if (Random.Range(0, 2) == 0)
-        {
-            obj = ObjectPoolManager.Instance.GetObject(KeyType.ItemHeal);
+        if (Random.Range(0, 2) == 0)// È®·ü
+        { 
+            obj = ObjectPoolManager.Instance.GetObject((KeyType)Random.Range(0, 2));
+            Vector3 itemposition = this.transform.position;
+            itemposition.y = 1f;
+            obj.transform.position = itemposition;
         }
-        else
-        {
-            obj = ObjectPoolManager.Instance.GetObject(KeyType.ItemAmmo);
-        }
-        Vector3 itemposition = this.transform.position;
-        itemposition.y = 1f;
-        obj.transform.position = itemposition;
     }
     public void TakeDamage(float damage)
     {
-
         if (Hp > 0)
         {
             Hp -= damage;

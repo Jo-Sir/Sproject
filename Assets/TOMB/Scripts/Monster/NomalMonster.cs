@@ -7,7 +7,6 @@ public class NomalMonster : Monster
     #region State
     private IEnumerator Idle()
     {
-        animator.SetBool("Hit", false);
         while (true)
         {
             if (!animator.GetBool("Attack"))
@@ -57,6 +56,7 @@ public class NomalMonster : Monster
     {
         animator.SetBool("Hit", true);
         yield return null;
+        animator.SetBool("Hit", false);
         ChangeState(State.Idle);
     }
     private IEnumerator Die()

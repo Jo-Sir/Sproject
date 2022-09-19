@@ -17,12 +17,13 @@ public class ItemController : MonoBehaviour
         Collider[] target = Physics.OverlapSphere(transform.position, range, layerMask);
         if (target.Length > 0)
         {
-            float distanceToTarget = (target[0].transform.position - transform.position).sqrMagnitude;
-            
+            Vector3 targetVec = new Vector3(target[0].transform.position.x, target[0].transform.position.y + 3f, target[0].transform.position.z);
+            float distanceToTarget = (targetVec - transform.position).sqrMagnitude;
             if (distanceToTarget > Mathf.Pow(0.1f, 2))
             {
+                
                 // 등속이동
-                transform.position = Vector3.MoveTowards(transform.position, target[0].transform.position, 0.1f);
+                transform.position = Vector3.MoveTowards(transform.position, targetVec, 0.2f);
                 if (distanceToTarget < Mathf.Pow(1f, 2))
                 {
                     item.Use();

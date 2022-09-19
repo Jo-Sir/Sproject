@@ -137,6 +137,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8130613027424069759}
   - component: {fileID: 440351816543810437}
+  - component: {fileID: 147182094}
   m_Layer: 6
   m_Name: Queen Worm
   m_TagString: Untagged
@@ -225,6 +226,20 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.97031474, y: -0.8939542, z: -0.0000054836273}
     m_Extent: {x: 2.2973154, y: 1.6842039, z: 1.2085985}
   m_DirtyAABB: 0
+--- !u!64 &147182094
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3090346469496285981}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 605619700781316780, guid: 901f07a46fb9f4a41b4af110da172408, type: 3}
 --- !u!1 &3611270503165392619
 GameObject:
   m_ObjectHideFlags: 0
@@ -540,7 +555,7 @@ Transform:
   m_GameObject: {fileID: 8411105330407666398}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 5.7899632, y: 0, z: -4.1823773}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8130613027424069759}

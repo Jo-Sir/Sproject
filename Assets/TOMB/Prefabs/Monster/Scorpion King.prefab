@@ -233,6 +233,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7602526484265803688}
   - component: {fileID: 4011906437610723287}
+  - component: {fileID: 1077198735}
   m_Layer: 6
   m_Name: Scorpion King
   m_TagString: Untagged
@@ -350,6 +351,20 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.30134308, y: -1.242239, z: 0.00009196997}
     m_Extent: {x: 1.7004405, y: 1.9396689, z: 1.6300828}
   m_DirtyAABB: 0
+--- !u!64 &1077198735
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 583009692116593563}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: 7748059413477995457, guid: 843e3ce816742fc4bbddd526666f9641, type: 3}
 --- !u!1 &1278060304793319902
 GameObject:
   m_ObjectHideFlags: 0
@@ -441,7 +456,7 @@ Transform:
   m_GameObject: {fileID: 1434462475060291076}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -6.024785, y: 0, z: -3.564333}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2824387270233797269}

@@ -278,7 +278,7 @@ Transform:
   m_GameObject: {fileID: 5497872771397226750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 4.6761804, y: 0, z: 6.367294}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7108757641378310526}
@@ -5354,6 +5354,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7108757641378310526}
   - component: {fileID: 1315390174305325746}
+  - component: {fileID: 1528186396051572380}
   m_Layer: 6
   m_Name: Golem Ice
   m_TagString: Untagged
@@ -5443,6 +5444,20 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.40225065, y: 0.06084293, z: -0.01200968}
     m_Extent: {x: 1.4575237, y: 0.838191, z: 1.3490295}
   m_DirtyAABB: 0
+--- !u!64 &1528186396051572380
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6610033734298029935}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 4
+  m_Convex: 1
+  m_CookingOptions: 30
+  m_Mesh: {fileID: -8904838584975630557, guid: 349082a25b327c641981f8df4f35e4c7, type: 3}
 --- !u!1 &6761394895446945885
 GameObject:
   m_ObjectHideFlags: 0

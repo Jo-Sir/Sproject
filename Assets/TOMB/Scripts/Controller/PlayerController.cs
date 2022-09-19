@@ -11,31 +11,18 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float maxHp;
     [SerializeField] private float hp;
     [SerializeField] private float jumpPower;
+    private Animator animator;
     public float MaxHp { get { return maxHp; } }
     public float Hp { get { return hp; } }
     public float MoveSpeed { get { return moveSpeed; } }
     public float JumpPower { get { return jumpPower; } }
+    public Animator Animator { set { animator = value; } get { return animator; } }
     private Monster[] monsters;
     private void Awake()
     {
+        animator = GetComponentInChildren<Animator>();
         Cursor.lockState = CursorLockMode.Locked;
         hp = MaxHp;
-        
-    }
-
-    private void Update()
-    {
-        if (monsters is null)
-        {
-            monsters = FindObjectsOfType<Monster>();
-        }
-        if (Input.GetButtonDown("Fire1"))
-        {
-            for (int i = 0; i < monsters.Length; i++)
-            {
-                monsters[i].GetComponent<IDamagable>().TakeDamage(10f);
-            }
-        }
     }
     public void HpHeal(float heal)
     {
@@ -43,4 +30,5 @@ public class PlayerController : MonoBehaviour
         hp += heal;
         if (Hp > MaxHp) { hp = MaxHp; }
     }
+    
 }
