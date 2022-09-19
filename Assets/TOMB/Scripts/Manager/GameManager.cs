@@ -17,7 +17,7 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         stageCount = 1;
-        StageStart();
+        //StageStart();
     }
     public void StageStart()
     {

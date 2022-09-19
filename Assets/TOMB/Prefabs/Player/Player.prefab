@@ -6420,6 +6420,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 5578287539163424668, guid: 9482e0a2ae6a92742bbe72e00f29f763, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 5579719340966019200, guid: 9482e0a2ae6a92742bbe72e00f29f763, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -6599,6 +6603,10 @@ PrefabInstance:
     - target: {fileID: 5950161074742785357, guid: 9482e0a2ae6a92742bbe72e00f29f763, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5950161074752259723, guid: 9482e0a2ae6a92742bbe72e00f29f763, type: 3}
+      propertyPath: m_Controller
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 5959908027345868128, guid: 9482e0a2ae6a92742bbe72e00f29f763, type: 3}
       propertyPath: m_Layer
@@ -7952,6 +7960,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 8174372834445081169, guid: 9482e0a2ae6a92742bbe72e00f29f763, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 8184517305223433281, guid: 9482e0a2ae6a92742bbe72e00f29f763, type: 3}
       propertyPath: m_Layer
       value: 3
@@ -8604,7 +8616,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 1676253291992566986}
   damage: 5
-  rate: 1.5
+  rate: 2
   layerMask:
     serializedVersion: 2
     m_Bits: 64
@@ -8627,7 +8639,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cam: {fileID: 1676253291992566986}
   damage: 10
-  rate: 1
+  rate: 0.1
   layerMask:
     serializedVersion: 2
     m_Bits: 64

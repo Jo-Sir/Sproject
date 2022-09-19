@@ -8,9 +8,10 @@ public class GunController : MonoBehaviour
     [SerializeField] private Gun[] guns;
     private Gun curGun;
     private int curGunNum;
-
+    private Animator playerAnimator;
     private void Awake()
     {
+        playerAnimator = GameManager.Instance.player.GetComponentInChildren<Animator>();
         guns = GetComponentsInChildren<Gun>(true);
         curGun = guns[0];
         curGunNum = 0;
@@ -19,10 +20,15 @@ public class GunController : MonoBehaviour
     }
     private void Update()
     {
+        
         ShotDivision(curGunNum);
-        if (Input.inputString.Equals("1") || Input.inputString.Equals("2") || Input.inputString.Equals("3") || Input.inputString.Equals("4"))
+        if (Input.inputString.Equals("1") || Input.inputString.Equals("2") || Input.inputString.Equals("3"))
         {
-            SwapGun(int.Parse(Input.inputString));
+            if (int.Parse(Input.inputString)!= (curGunNum + 1))
+            { 
+                playerAnimator.SetTrigger("Swap");
+                SwapGun(int.Parse(Input.inputString));
+            }
         }
         if (Input.GetKeyDown(KeyCode.R))
         {
@@ -30,12 +36,13 @@ public class GunController : MonoBehaviour
         }
     }
     private void SwapGun(int value)
-    {
+    { 
         value -= 1;
         curGun.gameObject.SetActive(false);
         curGun = guns[value];
         curGun.gameObject.SetActive(true);
         curGunNum = value;
+        playerAnimator.SetInteger("CurGun", curGunNum);
     }
     private void Shoot()
     {

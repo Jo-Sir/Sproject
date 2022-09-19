@@ -10,12 +10,14 @@ public class Gun : MonoBehaviour
     [SerializeField] protected float rate;
     [SerializeField] protected LayerMask layerMask;
     protected ParticleSystem muzzleFlash;
-    protected Animator animator;
+    protected Animator gunAnimator;
+    private Animator playerAnimator;
     protected bool rateOn = true;
     protected RaycastHit hit;
     private void OnEnable()
     {
-        animator = GetComponent<Animator>();
+        playerAnimator = GameManager.Instance.player.GetComponentInChildren<Animator>(); 
+        gunAnimator = GetComponent<Animator>();
         muzzleFlash = GetComponentInChildren<ParticleSystem>();
         rateOn = true;
     }
@@ -24,10 +26,7 @@ public class Gun : MonoBehaviour
 
         if (rateOn)
         {
-            //GameManager.Instance.shootRate++;
-            GameManager.Instance.player.Animator.SetBool("Shoot", true);
-            
-            // muzzleFlash.Play();
+            playerAnimator.SetTrigger("Shoot");
             StartCoroutine(RateOfFire());
             // (시작점, 방향, 맞는객체의 인포, 사거리)
             int bulletCount = 1;
@@ -50,21 +49,21 @@ public class Gun : MonoBehaviour
                 Debug.DrawRay(cam.transform.position, transform.forward * 15f, Color.red, 1f);
             }
             target?.TakeDamage(accumDamage);
-            //GameManager.Instance.player.Animator.SetBool("Shoot", false);
-            // animator.SetTrigger("Idle");
+            playerAnimator.SetTrigger("Idle");
             // GameManager.Instance.Accuracy();
         }
     }
+
     public void ReLord()
     {
-        animator.SetTrigger("ReLord");
-        animator.SetTrigger("Idle");
+        playerAnimator.SetTrigger("ReLord");
+        playerAnimator.SetTrigger("Idle");
     }
 
     protected IEnumerator RateOfFire()
     {
         rateOn = false;
-        yield return new WaitForSeconds(rate);
+        yield return new WaitForSecondsRealtime(rate);
         rateOn = true;
     }
 }
