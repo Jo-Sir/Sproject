@@ -23,6 +23,7 @@ public class Monster : MonoBehaviour, IDamagable
     protected GameObject attackTarget = null;
     protected NavMeshAgent agent;
     protected Animator animator;
+    protected MeshCollider meshCollider;
     public LayerMask TargetLayerMask { get { return targetLayerMask; } }
     public float AttackRange { get { return attackRange; } }
     public float AttackDamage { get { return attackDamage; } }
@@ -38,6 +39,7 @@ public class Monster : MonoBehaviour, IDamagable
             hp = value;
             if (hp <= 0)
             {
+                meshCollider.enabled = false;
                 ChangeState(State.Die);
             }else if (Hp > 0 || Hp < MaxHp )
             {
@@ -49,11 +51,13 @@ public class Monster : MonoBehaviour, IDamagable
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
+        meshCollider = GetComponentInChildren<MeshCollider>();
         Hp = MaxHp;
         curState = State.Idle;
     }
     private void OnEnable()
     {
+        meshCollider.enabled = true;
         ChangeState(curState);
     }
     protected void ChangeState(State nextState)

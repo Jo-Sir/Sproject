@@ -9,30 +9,33 @@ public class GunController : MonoBehaviour
     private Gun curGun;
     private int curGunNum;
     private Animator playerAnimator;
+    private bool isAction = true; //false면행동불가 true면 행동가능
+    public bool IsAction { set { isAction = value; } get { return isAction; } }
     private void Awake()
     {
-        playerAnimator = GameManager.Instance.player.GetComponentInChildren<Animator>();
+        playerAnimator = GetComponentInChildren<Animator>();
         guns = GetComponentsInChildren<Gun>(true);
         curGun = guns[0];
         curGunNum = 0;
         curGun.gameObject.SetActive(true);
-
+        SwapGun(curGunNum + 1);
     }
     private void Update()
     {
-        
-        ShotDivision(curGunNum);
-        if (Input.inputString.Equals("1") || Input.inputString.Equals("2") || Input.inputString.Equals("3"))
-        {
-            if (int.Parse(Input.inputString)!= (curGunNum + 1))
-            { 
-                playerAnimator.SetTrigger("Swap");
-                SwapGun(int.Parse(Input.inputString));
+        if (isAction)
+        { 
+            ShotDivision(curGunNum);
+            if ((Input.inputString.Equals("1") || Input.inputString.Equals("2") || Input.inputString.Equals("3")))
+            {
+                if (int.Parse(Input.inputString)!= (curGunNum + 1))
+                { 
+                    SwapGun(int.Parse(Input.inputString));
+                }
             }
-        }
-        if (Input.GetKeyDown(KeyCode.R))
-        {
-            ReLord();
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                ReLord();
+            }
         }
     }
     private void SwapGun(int value)
@@ -42,15 +45,17 @@ public class GunController : MonoBehaviour
         curGun = guns[value];
         curGun.gameObject.SetActive(true);
         curGunNum = value;
-        playerAnimator.SetInteger("CurGun", curGunNum);
+        playerAnimator.Play(curGunNum.ToString() + "_Swap");
     }
     private void Shoot()
     {
+        playerAnimator.Play(curGunNum.ToString() + "_Fire");
         curGun.Shoot(curGunNum);
     }
     private void ReLord()
     {
-        curGun.ReLord();
+        playerAnimator.Play(curGunNum.ToString() + "_Reload");
+        curGun.Reload(curGunNum);
     }
     private void ShotDivision(int value)
     {

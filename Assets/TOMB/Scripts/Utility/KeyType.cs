@@ -1,7 +1,9 @@
 public enum KeyType 
 { 
-    // Item
+    // Item 0~1
     ItemHeal, ItemAmmo,
-    // Monster
-    MonsterScorpionKing, MonsterGolemIce, MonsterQueenWorm, MonsterSkeleton, BoosMonster
+    // Monster 2~6
+    MonsterScorpionKing, MonsterGolemIce, MonsterQueenWorm, MonsterSkeleton, BoosMonster,
+    // Effect 7~
+    EffMonsterHit, EffObjectHit
 }
