@@ -7,6 +7,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private GameObject map;
     private MeshCollider mapcollider;
     public PlayerController player;
+    [Range(0f, 2000f)] public float mouseSensitivity;
     public int spwanCount;
     public int stageCount;
     private new void Awake()

@@ -5,19 +5,14 @@ using UnityEngine;
 
 public class PlayerCamera : MonoBehaviour
 {
-
-    [SerializeField]
-    private float mouseSensitivity;
-
-    [SerializeField]
-    private Transform playerBody;
-
+    [SerializeField] private Transform playerBody;
     private float xRotation = 0f;
     private float mouseX;
     private float mouseY;
-
+    private float mouseSensitivity;
     private void Start()
     {
+        mouseSensitivity = GameManager.Instance.mouseSensitivity;
         // 마우스 안보이게 잠금
         Cursor.lockState = CursorLockMode.Locked;
     }

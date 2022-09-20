@@ -28,7 +28,11 @@ public class NomalMonster : Monster
         while (true)
         {
             animator.SetBool("Walk", (traceTarget != null));
-            if (traceTarget != null) agent.destination = traceTarget.transform.position;
+            if (traceTarget != null) 
+            {
+                agent.speed = MoveSpeed;
+                agent.destination = traceTarget.transform.position; 
+            }
             if (!FindTarget())
             {
                 traceTarget = null;
@@ -48,15 +52,18 @@ public class NomalMonster : Monster
     {
         animator.SetBool("Attack", FindAttackTarget());
         animator.SetInteger("RanAttack", Random.Range(0, attackPattern));
-        yield return null;
+        yield return new WaitForSeconds(1f);
         ChangeState(State.Idle);
 
     }
     private IEnumerator Hit()
     {
-        animator.SetBool("Hit", true);
-        yield return null;
-        animator.SetBool("Hit", false);
+        if ((!animator.GetBool("Attack") && !animator.GetBool("Walk"))) 
+        {
+            animator.SetBool("Hit", true);
+            yield return null;
+            animator.SetBool("Hit", false);
+        }
         ChangeState(State.Idle);
     }
     private IEnumerator Die()

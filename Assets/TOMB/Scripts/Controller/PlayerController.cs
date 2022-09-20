@@ -4,18 +4,16 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(CharacterController), typeof(PlayerMovement))]
-public class PlayerController : MonoBehaviour
+public class PlayerController : MonoBehaviour, IDamagable
 {
     [Header("stat")]
     [SerializeField, Range(1f, 10f)] private float moveSpeed = 5f;
     [SerializeField] private float maxHp;
     [SerializeField] private float hp;
-    [SerializeField] private float jumpPower;
     private Animator animator;
     public float MaxHp { get { return maxHp; } }
     public float Hp { get { return hp; } }
     public float MoveSpeed { get { return moveSpeed; } }
-    public float JumpPower { get { return jumpPower; } }
     public Animator Animator { set { animator = value; } get { return animator; } }
     private Monster[] monsters;
     private void Awake()
@@ -30,5 +28,9 @@ public class PlayerController : MonoBehaviour
         hp += heal;
         if (Hp > MaxHp) { hp = MaxHp; }
     }
-    
+
+    public void TakeDamage(float damage)
+    {
+        Debug.Log("½Î¸ÂÀ½"+damage);
+    }
 }

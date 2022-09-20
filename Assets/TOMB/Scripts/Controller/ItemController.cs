@@ -21,7 +21,6 @@ public class ItemController : MonoBehaviour
             float distanceToTarget = (targetVec - transform.position).sqrMagnitude;
             if (distanceToTarget > Mathf.Pow(0.1f, 2))
             {
-                
                 // 등속이동
                 transform.position = Vector3.MoveTowards(transform.position, targetVec, 0.2f);
                 if (distanceToTarget < Mathf.Pow(1f, 2))

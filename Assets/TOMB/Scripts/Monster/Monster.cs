@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.AI;
 [RequireComponent(typeof(NavMeshAgent))]
 public class Monster : MonoBehaviour, IDamagable
@@ -17,13 +18,14 @@ public class Monster : MonoBehaviour, IDamagable
     [SerializeField] protected int attackPattern;
     [Header("target & range")]
     [SerializeField] protected LayerMask targetLayerMask;
-    [SerializeField, Range(0f, 10f)] protected float targetInRage;
-    [SerializeField, Range(0f, 10f)] protected float attackRange;
+    [SerializeField, Range(0f, 50f)] protected float targetInRage;
+    [SerializeField, Range(0f, 50f)] protected float attackRange;
     protected GameObject traceTarget = null;
     protected GameObject attackTarget = null;
     protected NavMeshAgent agent;
     protected Animator animator;
     protected MeshCollider meshCollider;
+    protected UnityAction onAttack;
     public LayerMask TargetLayerMask { get { return targetLayerMask; } }
     public float AttackRange { get { return attackRange; } }
     public float AttackDamage { get { return attackDamage; } }
@@ -31,6 +33,7 @@ public class Monster : MonoBehaviour, IDamagable
     public float MoveSpeed { get { return moveSpeed; } }
     public Animator Animator { get { return animator; } }
     public float MaxHp { get { return maxHp; } }
+    public UnityAction OnAttack { get { return onAttack; } }
     public virtual float Hp
     {
         get { return hp; }
@@ -41,9 +44,13 @@ public class Monster : MonoBehaviour, IDamagable
             {
                 meshCollider.enabled = false;
                 ChangeState(State.Die);
-            }else if (Hp > 0 || Hp < MaxHp )
+            }else if (Hp > 0 && Hp < MaxHp)
             {
                 ChangeState(State.Hit);
+                if (traceTarget is null)
+                {
+                    traceTarget = GameManager.Instance.player.gameObject;
+                }
             }
         }
     }
@@ -70,14 +77,17 @@ public class Monster : MonoBehaviour, IDamagable
     {
         Vector3 onwertransform = transform.position;
         onwertransform.y = transform.position.y + 1f;
-        Collider[] target = Physics.OverlapSphere(onwertransform, TargetInRage, TargetLayerMask);
-        if (target.Length > 0)
+        if (traceTarget == null)
         {
-            traceTarget = target[0].gameObject;
-        }
-        else
-        {
-            traceTarget = null;
+            Collider[] target = Physics.OverlapSphere(onwertransform, TargetInRage, TargetLayerMask);
+            if (target.Length > 0)
+            {
+                traceTarget = target[0].gameObject;
+            }
+            else
+            {
+                traceTarget = null;
+            }
         }
         return traceTarget != null;
     }
@@ -87,10 +97,12 @@ public class Monster : MonoBehaviour, IDamagable
         if (target.Length > 0)
         {
             attackTarget = target[0].gameObject;
+            onAttack = () => target[0].GetComponent<IDamagable>().TakeDamage(attackDamage);
         }
         else
         {
             attackTarget = null;
+            onAttack = null;
         }
         return attackTarget != null;
     }
@@ -111,7 +123,10 @@ public class Monster : MonoBehaviour, IDamagable
         {
             Hp -= damage;
         }
-
+    }
+    public void AttackFunc()
+    {
+        OnAttack?.Invoke();
     }
     private void OnDrawGizmosSelected()
     {

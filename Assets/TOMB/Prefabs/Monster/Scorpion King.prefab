@@ -502,16 +502,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyType: 2
-  maxHp: 100
+  maxHp: 1000000
   hp: 0
-  moveSpeed: 2.5
+  moveSpeed: 10
   attackDamage: 2.5
   attackPattern: 4
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  targetInRage: 4.9
-  attackRange: 2.3
+  targetInRage: 20
+  attackRange: 6
 --- !u!195 &1034720786
 NavMeshAgent:
   m_ObjectHideFlags: 0

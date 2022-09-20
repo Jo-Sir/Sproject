@@ -11,10 +11,11 @@ public class PlayerMovement : MonoBehaviour
     private float moveV;
     private float moveY;
     private float moveSpeed;
-    private bool jumpLimit = true;
+    private bool ableStep = true;
     private GroundChecker groundChecker;
     private void Awake()
     {
+        moveSpeed = GameManager.Instance.player.MoveSpeed;
         characterController = GetComponent<CharacterController>();
         groundChecker = GetComponent<GroundChecker>();
     }
@@ -25,29 +26,25 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Move()
     {
-
         moveH = Input.GetAxis("Horizontal");
         moveV = Input.GetAxis("Vertical");
-        if (groundChecker.IsGrounded)
-        {
-            moveY = 0;
-            jumpLimit = true;
-            Jump();
-        }
-        else
-        {
-            moveY += Physics.gravity.y * Time.deltaTime;
-            jumpLimit = false;
-        }
-        moveVec = (transform.right * moveH + transform.forward * moveV) * GameManager.Instance.player.MoveSpeed;
+        float distance = (characterController.velocity - Vector3.zero).sqrMagnitude;
+        if (!groundChecker.IsGrounded) { moveY += Physics.gravity.y * Time.deltaTime; }
+        if ((Input.GetButtonDown("Jump") && distance != 0 && ableStep)) { StartCoroutine(Evasion()); }
+        moveVec = (transform.right * moveH + transform.forward * moveV) * moveSpeed;
         moveVec.y = moveY;
         characterController.Move(moveVec * Time.deltaTime);
     }
-    private void Jump()
+    private IEnumerator Evasion()
     {
-        if (Input.GetButtonDown("Jump") && jumpLimit)
+        ableStep = false;
+        for (int i = 0; i < 30; i++)
         {
-            moveY += GameManager.Instance.player.JumpPower;
+            moveVec = (transform.right * moveH + transform.forward * moveV) * i;
+            characterController.Move(moveVec * Time.deltaTime);
+            yield return null;
         }
+        yield return new WaitForSeconds(5f);
+        ableStep = true;
     }
 }
