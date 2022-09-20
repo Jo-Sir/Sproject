@@ -16,7 +16,7 @@ public class GameManager : Singleton<GameManager>
     }
     private void Start()
     {
-        stageCount = 1;
+        stageCount = 4;
         //StageStart();
     }
     public void StageStart()
@@ -24,8 +24,7 @@ public class GameManager : Singleton<GameManager>
         
         if (stageCount >=4) { stageCount = 4; }
         for (int i = 0; i< spwanCount; i++)
-        {
-
+        {   
             GameObject obj;
             obj = ObjectPoolManager.Instance.GetObject((KeyType)(Random.Range(2, stageCount + 2)));
             obj.transform.position = GetRandomPosion();
