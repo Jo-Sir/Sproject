@@ -23,11 +23,10 @@ public class GunController : MonoBehaviour
         curGun.gameObject.SetActive(true);
         SwapGun(curGunNum + 1);
         changeUI = GameManager.Instance.uI.changeUIText;// ¿Ö¾È‰Î?
-
     }
     private void Update()
     {
-        if (isAction)
+        if (IsAction)
         { 
             ShotDivision(curGunNum);
             if ((Input.inputString.Equals("1") || Input.inputString.Equals("2") || Input.inputString.Equals("3")))
@@ -65,7 +64,7 @@ public class GunController : MonoBehaviour
         if (curGun.TotalBullet <= 0) return;
         playerAnimator.Play(curGunNum.ToString() + "_Reload");
         playerAnimator.SetInteger("ShotGunReloadNum", (int)curGun.CurBullet);
-        if (curGunNum !=2)
+        if (curGunNum != 2)
         { 
             curGun.Reload(curGunNum);
         }
