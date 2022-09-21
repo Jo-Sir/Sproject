@@ -2,6 +2,8 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using TMPro;
 
 public class GunController : MonoBehaviour
 {
@@ -9,6 +11,7 @@ public class GunController : MonoBehaviour
     private Gun curGun;
     private int curGunNum;
     private Animator playerAnimator;
+    private UnityAction<float, float> changeUI;
     private bool isAction = true; //false면행동불가 true면 행동가능
     public bool IsAction { set { isAction = value; } get { return isAction; } }
     private void Awake()
@@ -19,6 +22,8 @@ public class GunController : MonoBehaviour
         curGunNum = 0;
         curGun.gameObject.SetActive(true);
         SwapGun(curGunNum + 1);
+        changeUI = GameManager.Instance.uI.changeUIText;// 왜안됌?
+
     }
     private void Update()
     {
@@ -34,7 +39,7 @@ public class GunController : MonoBehaviour
             }
             if (Input.GetKeyDown(KeyCode.R))
             {
-                ReLord();
+                Reload();
             }
         }
     }
@@ -49,13 +54,21 @@ public class GunController : MonoBehaviour
     }
     private void Shoot()
     {
+        // Fire Empty 사운드
+        if (curGun.CurBullet <= 0) { return; }
         playerAnimator.Play(curGunNum.ToString() + "_Fire");
         curGun.Shoot(curGunNum);
+        
     }
-    private void ReLord()
+    private void Reload()
     {
+        if (curGun.TotalBullet <= 0) return;
         playerAnimator.Play(curGunNum.ToString() + "_Reload");
-        curGun.Reload(curGunNum);
+        playerAnimator.SetInteger("ShotGunReloadNum", (int)curGun.CurBullet);
+        if (curGunNum !=2)
+        { 
+            curGun.Reload(curGunNum);
+        }
     }
     private void ShotDivision(int value)
     {
@@ -73,5 +86,14 @@ public class GunController : MonoBehaviour
                 Shoot();
             }
         }
+    }
+    public void ShotGunReload()
+    {
+        curGun.ReloadShotGun();
+    }
+    public void ChangeAmmoText()
+    {
+        // changeUI?.Invoke(curGun.CurBullet, curGun.TotalBullet);
+        GameManager.Instance.uI.changeUIText?.Invoke(curGun.CurBullet, curGun.TotalBullet);
     }
 }

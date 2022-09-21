@@ -5,8 +5,9 @@ using UnityEngine;
 public class GameManager : Singleton<GameManager>
 {
     [SerializeField] private GameObject map;
-    private MeshCollider mapcollider;
+    public UIController uI;
     public PlayerController player;
+    private MeshCollider mapcollider;
     [Range(0f, 2000f)] public float mouseSensitivity;
     public int spwanCount;
     public int stageCount;

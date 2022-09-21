@@ -44,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
             characterController.Move(moveVec * Time.deltaTime);
             yield return null;
         }
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(1f);
         ableStep = true;
     }
 }

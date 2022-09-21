@@ -1,18 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
+using TMPro;
 
 public class UIController : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public UnityAction<float, float> changeUIText;
+    [SerializeField] private TextMeshProUGUI curAmmo;
+    [SerializeField] private TextMeshProUGUI totalAmmo;
+    private Sprite[] gunsBodySprite;
+    private Sprite[] magazineSprite;
+    private Sprite[] ScopeSprite;
+    private void Awake()
     {
-        
+        changeUIText = (float curAmmo, float totalAmmo) => TextAmmoChange(curAmmo, totalAmmo);
     }
-
-    // Update is called once per frame
-    void Update()
+    public void TextAmmoChange(float curAmmo, float totalAmmo)
     {
-        
+        this.curAmmo.text = curAmmo.ToString();
+        this.totalAmmo.text = totalAmmo.ToString();
     }
 }

@@ -8,22 +8,32 @@ public class Gun : MonoBehaviour
     [SerializeField] private Camera cam;
     [SerializeField] private float damage;
     [SerializeField] private float rate;
+    [SerializeField] private float curBullet;
+    [SerializeField] private float totalBullet;
+    [SerializeField] private float maxBullet;
     [SerializeField] private LayerMask layerMask;
     private ParticleSystem[] muzzleFlash;
-    private Animator gunAnimator;
-    private Animator playerAnimator;
     private bool rateOn = true;
     private RaycastHit hit;
+    public float CurBullet { get { return curBullet; } }
+    public float TotalBullet { get { return totalBullet; } }
+    public float MaxBullet { get { return maxBullet; } }
+    private void Awake()
+    {
+        curBullet = maxBullet;
+        totalBullet = 50f;
+    }
     private void OnEnable()
     { 
-        gunAnimator = GetComponent<Animator>();
         muzzleFlash = GetComponentsInChildren<ParticleSystem>(true);
         rateOn = true;
     }
     public virtual void Shoot(int curGunNum)
     {
+        if (curBullet == 0) return;
         if (rateOn)
         {
+            curBullet--;
             ParticleOn();
             StartCoroutine(RateOfFire());
             int bulletCount = 1;
@@ -58,10 +68,19 @@ public class Gun : MonoBehaviour
             target?.TakeDamage(accumDamage);
         }
     }
-
     public void Reload(int curGunNum)
     {
-        
+        if (curBullet == maxBullet) return;
+        float subAmmo = -(curBullet - maxBullet);
+        if (totalBullet <= subAmmo) { subAmmo = totalBullet; }
+        curBullet += subAmmo;
+        totalBullet -= subAmmo;
+
+    }
+    public void ReloadShotGun()
+    {
+        curBullet += 1;
+        totalBullet -= 1;
     }
     private void ParticleOn()
     {
