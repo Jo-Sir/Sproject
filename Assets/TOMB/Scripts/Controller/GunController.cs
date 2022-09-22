@@ -50,6 +50,7 @@ public class GunController : MonoBehaviour
         curGun.gameObject.SetActive(true);
         curGunNum = value;
         ChangeGunsImage();
+        ChangeAmmoText();
         playerAnimator.Play(curGunNum.ToString() + "_Swap");
     }
     private void Shoot()

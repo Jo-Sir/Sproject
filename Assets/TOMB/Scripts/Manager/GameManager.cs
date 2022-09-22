@@ -20,7 +20,7 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         stageCount = 4;
-        StageStart();
+        // StageStart();
     }
     public void StageStart()
     {

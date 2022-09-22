@@ -25,18 +25,14 @@ public class UIController : MonoBehaviour
     [SerializeField] private Image scope;
     [SerializeField] private Image hpbar;
     [SerializeField] private Image damageBar;
-    [SerializeField] private float playerCurHp;
     [SerializeField] private float playerMaxHp;
-    private float preHp;
-
 
     private void Awake()
     {
         playerMaxHp = GameManager.Instance.player.MaxHp;
-        playerCurHp = GameManager.Instance.player.Hp;
         changeUIText = (float curAmmo, float totalAmmo) => TextAmmoChange(curAmmo, totalAmmo);
         changeGunImage = (int curGunNum) => GunsImageChange(curGunNum);
-        changeHpBar = (float curHp) => UpdateGreenHp(curHp);
+        changeHpBar = (float curHp) => UpdateHp(curHp);
         hpbar.fillAmount = 1f; 
         damageBar.fillAmount = 1f;
     }
@@ -52,20 +48,35 @@ public class UIController : MonoBehaviour
         magazine.sprite = gunSpriteDatas[curGunNum].magazineSprite;
         scope.sprite = gunSpriteDatas[curGunNum].scopeSprite;
     }
-    public void UpdateGreenHp(float curHp)
+    private void UpdateHp(float curHp)
     {
         float cent = curHp / playerMaxHp;// 목적지
-        if (curHp == playerMaxHp) { hpbar.fillAmount = cent; damageBar.fillAmount = cent; }
-        hpbar.fillAmount = cent;
-        StartCoroutine(UpdateRedHp(cent));
+        if (hpbar.fillAmount < cent) 
+        { // 회복
+            StartCoroutine(UpdateGreenHp(cent));
+        }
+        else 
+        { // 맞았을때
+            hpbar.fillAmount = cent;
+            StartCoroutine(UpdateRedHp(cent));
+        }
     }
-    public IEnumerator UpdateRedHp(float cent)
+    private IEnumerator UpdateRedHp(float cent)
     {
-        for (float i = damageBar.fillAmount; i > cent; i-=0.005f)
+        for (float i = damageBar.fillAmount; i > cent; i-=0.007f)
         {
             damageBar.fillAmount = i;
             yield return null;
         }
-        damageBar.fillAmount = hpbar.fillAmount - 0.001f;
+        damageBar.fillAmount -= 0.005f;
+    }
+
+    private IEnumerator UpdateGreenHp(float cent)
+    {
+        for (float i = hpbar.fillAmount; i < cent; i += 0.007f)
+        {
+            hpbar.fillAmount = i;
+            yield return null;
+        }
     }
 }

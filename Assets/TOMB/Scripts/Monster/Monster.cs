@@ -44,9 +44,10 @@ public class Monster : MonoBehaviour, IDamagable
             {
                 meshCollider.enabled = false;
                 ChangeState(State.Die);
-            }else if (Hp > 0 && Hp < MaxHp)
+            }else if (Hp >= 0 && Hp < MaxHp)
             {
-                ChangeState(State.Hit);
+                
+                if (!animator.GetBool("Hit")) { ChangeState(State.Hit); } 
                 if (traceTarget is null)
                 {
                     traceTarget = GameManager.Instance.player.gameObject;
@@ -121,7 +122,14 @@ public class Monster : MonoBehaviour, IDamagable
     {
         if (Hp > 0)
         {
-            Hp -= damage;
+            if (Hp < damage)
+            {
+                Hp = 0;
+            }
+            else 
+            {
+                Hp -= damage;
+            }
         }
     }
     public void AttackFunc()

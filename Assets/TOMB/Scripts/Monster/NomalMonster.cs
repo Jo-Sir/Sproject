@@ -42,6 +42,7 @@ public class NomalMonster : Monster
             }
             if (FindAttackTarget() && !animator.GetBool("Attack"))
             {
+                agent.ResetPath();
                 animator.SetBool("Walk", false);
                 ChangeState(State.Attack);
             }
@@ -58,16 +59,18 @@ public class NomalMonster : Monster
     }
     private IEnumerator Hit()
     {
-        if ((!animator.GetBool("Attack") && !animator.GetBool("Walk"))) 
+        if ((!animator.GetBool("Attack") && !animator.GetBool("Walk")&& !animator.GetBool("Hit"))) 
         {
-            animator.SetBool("Hit", true);
+            animator.Play("Take Damage");
+            // animator.SetBool("Hit", true);
             yield return null;
-            animator.SetBool("Hit", false);
         }
         ChangeState(State.Idle);
     }
     private IEnumerator Die()
     {
+        agent.ResetPath();
+        animator.SetBool("Hit", false);
         animator.SetTrigger("Die");
         yield return new WaitForSeconds(1.5f);
         DropItem();
