@@ -7,6 +7,7 @@ public class GameManager : Singleton<GameManager>
     [SerializeField] private GameObject map;
     public UIController uI;
     public PlayerController player;
+    public GunController gunController;
     private MeshCollider mapcollider;
     [Range(0f, 2000f)] public float mouseSensitivity;
     public int spwanCount;
@@ -19,7 +20,7 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         stageCount = 4;
-        //StageStart();
+        StageStart();
     }
     public void StageStart()
     {

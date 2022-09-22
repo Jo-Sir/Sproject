@@ -7,6 +7,6 @@ public class AmmoItem : DropItem
     [SerializeField] private int ammo;
     public override void Use()
     {
-        // 현제 보유중인 탄약 10증가
+        GameManager.Instance.gunController.TotalAmmoUp(ammo);
     }
 }

@@ -502,7 +502,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyType: 2
-  maxHp: 1000000
+  maxHp: 100
   hp: 0
   moveSpeed: 10
   attackDamage: 2.5

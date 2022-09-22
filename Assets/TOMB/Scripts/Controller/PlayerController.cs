@@ -15,7 +15,6 @@ public class PlayerController : MonoBehaviour, IDamagable
     public float Hp { get { return hp; } }
     public float MoveSpeed { get { return moveSpeed; } }
     public Animator Animator { set { animator = value; } get { return animator; } }
-    private Monster[] monsters;
     private void Awake()
     {
         animator = GetComponentInChildren<Animator>();
@@ -27,10 +26,12 @@ public class PlayerController : MonoBehaviour, IDamagable
         if (Hp == MaxHp) { return; }
         hp += heal;
         if (Hp > MaxHp) { hp = MaxHp; }
+        GameManager.Instance.uI.changeHpBar?.Invoke(Hp);
     }
-
+    
     public void TakeDamage(float damage)
     {
-        Debug.Log("½Î¸ÂÀ½"+damage);
+        hp -= damage;
+        GameManager.Instance.uI.changeHpBar?.Invoke(Hp);
     }
 }

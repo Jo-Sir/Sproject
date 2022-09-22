@@ -12,6 +12,7 @@ public class ItemController : MonoBehaviour
     {
         PlayerCheck();
     }
+
     private void PlayerCheck()
     {
         Collider[] target = Physics.OverlapSphere(transform.position, range, layerMask);
@@ -30,7 +31,6 @@ public class ItemController : MonoBehaviour
                     ObjectPoolManager.Instance.ReturnObject(this.gameObject, keyType);
                 }
             }
-            
         }
     }
     private void OnDrawGizmos()

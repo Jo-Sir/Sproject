@@ -6,11 +6,11 @@ public class IsActionBehaviour : StateMachineBehaviour
 {
     override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        GameManager.Instance.player.GetComponent<GunController>().IsAction = false;
+        GameManager.Instance.player.GetComponentInChildren<GunController>().IsAction = false;
     }
     override public void OnStateExit(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
     {
-        GameManager.Instance.player.GetComponent<GunController>().IsAction = true;
+        GameManager.Instance.player.GetComponentInChildren<GunController>().IsAction = true;
     }
 
     // OnStateMove is called before OnStateMove is called on any state inside this state machine

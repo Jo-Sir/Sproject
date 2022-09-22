@@ -49,6 +49,7 @@ public class GunController : MonoBehaviour
         curGun = guns[value];
         curGun.gameObject.SetActive(true);
         curGunNum = value;
+        ChangeGunsImage();
         playerAnimator.Play(curGunNum.ToString() + "_Swap");
     }
     private void Shoot()
@@ -61,6 +62,7 @@ public class GunController : MonoBehaviour
     }
     private void Reload()
     {
+        if (curGun.CurBullet == curGun.MaxBullet) return;
         if (curGun.TotalBullet <= 0) return;
         playerAnimator.Play(curGunNum.ToString() + "_Reload");
         playerAnimator.SetInteger("ShotGunReloadNum", (int)curGun.CurBullet);
@@ -90,9 +92,19 @@ public class GunController : MonoBehaviour
     {
         curGun.ReloadShotGun();
     }
+    public void TotalAmmoUp(float addAmmo)
+    {
+        curGun.AddTotalAmmo(addAmmo);
+        ChangeAmmoText();
+    }
     public void ChangeAmmoText()
     {
         // changeUI?.Invoke(curGun.CurBullet, curGun.TotalBullet);
         GameManager.Instance.uI.changeUIText?.Invoke(curGun.CurBullet, curGun.TotalBullet);
+    }
+    public void ChangeGunsImage()
+    {
+        // changeUI?.Invoke(curGun.CurBullet, curGun.TotalBullet);
+        GameManager.Instance.uI.changeGunImage?.Invoke(curGunNum);
     }
 }

@@ -7,9 +7,6 @@ public class HealItem : DropItem
     [SerializeField] private float heal;
     public override void Use()
     {
-        // 현재채력 힐
-        GameManager.Instance.player.HpHeal(heal);
-
-        
+        GameManager.Instance.player.HpHeal(heal); 
     }
 }

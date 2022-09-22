@@ -109,7 +109,7 @@ public class Monster : MonoBehaviour, IDamagable
     protected void DropItem()
     {
         GameObject obj = null;
-        if (Random.Range(0, 2) == 0)// È®·ü
+        if (Random.Range(0, 100) < 30)
         { 
             obj = ObjectPoolManager.Instance.GetObject((KeyType)Random.Range(0, 2));
             Vector3 itemposition = this.transform.position;

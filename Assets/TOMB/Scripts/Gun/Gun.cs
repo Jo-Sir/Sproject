@@ -21,7 +21,6 @@ public class Gun : MonoBehaviour
     private void Awake()
     {
         curBullet = maxBullet;
-        totalBullet = 50f;
     }
     private void OnEnable()
     { 
@@ -43,7 +42,6 @@ public class Gun : MonoBehaviour
                 bulletCount = 20;
             }
             IDamagable target = null;
-            float accumDamage = 0;
             while (i < bulletCount)
             {
                 Vector3 direction = new Vector3(Random.Range(-0.05f, 0.05f), Random.Range(-0.05f, 0.05f), Random.Range(-0.05f, 0.05f)); ;
@@ -54,18 +52,19 @@ public class Gun : MonoBehaviour
                     if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Monster"))
                     {
                         target = hit.transform.GetComponentInParent<IDamagable>();
-                        accumDamage += damage;
                         hiteff = ObjectPoolManager.Instance.GetObject(KeyType.EffMonsterHit);
                     }
                     else
+                    { 
                         hiteff = ObjectPoolManager.Instance.GetObject(KeyType.EffObjectHit);
-           
+                    }
                     hiteff.transform.position = hit.point;
+                    target?.TakeDamage(damage);
                 }
                 i++;
                 Debug.DrawRay(cam.transform.position, (transform.forward + direction) * 15f, Color.red, 1f);
             }
-            target?.TakeDamage(accumDamage);
+            
         }
     }
     public void Reload(int curGunNum)
@@ -82,6 +81,10 @@ public class Gun : MonoBehaviour
         curBullet += 1;
         totalBullet -= 1;
     }
+    public void AddTotalAmmo(float addAmmo)
+    {
+        totalBullet += addAmmo;
+    }
     private void ParticleOn()
     {
         for (int i = 0; i< muzzleFlash.Length; i++)
@@ -89,7 +92,7 @@ public class Gun : MonoBehaviour
             muzzleFlash[i].Play();
         }
     }
-    protected IEnumerator RateOfFire()
+    private IEnumerator RateOfFire()
     {
         rateOn = false;
         yield return new WaitForSecondsRealtime(rate);
