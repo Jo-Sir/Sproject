@@ -8,19 +8,18 @@ public class GameManager : Singleton<GameManager>
     public UIController uI;
     public PlayerController player;
     public GunController gunController;
-    private MeshCollider mapcollider;
+    private Collider mapcollider;
     [Range(0f, 2000f)] public float mouseSensitivity;
     public int spwanCount;
     public int stageCount;
     private new void Awake()
     {
         base.Awake();
-        mapcollider = map.GetComponent<MeshCollider>();
+        mapcollider = map.GetComponent<Collider>();
     }
     private void Start()
     {
-        stageCount = 4;
-        // StageStart();
+        StageStart();
     }
     public void StageStart()
     {
@@ -42,7 +41,7 @@ public class GameManager : Singleton<GameManager>
         
         range_X = Random.Range((range_X / 2) * -1, range_X / 2);
         range_Z = Random.Range((range_Z / 2) * -1, range_Z / 2);
-        Vector3 RandomPostion = new Vector3(range_X, mapPosition.y, range_Z);
+        Vector3 RandomPostion = new Vector3(range_X - 10f, mapPosition.y, range_Z - 10f);
         Vector3 respawnPosition = mapPosition + RandomPostion;
         return respawnPosition;
     }

@@ -9312,7 +9312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4616189154bc4c743bb8c2d9fb84dff5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyType: 7
+  keyType: 6
   lifeTime: 3
 --- !u!1 &741315237365427455
 GameObject:

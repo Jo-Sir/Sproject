@@ -44,11 +44,11 @@ public class Monster : MonoBehaviour, IDamagable
             {
                 meshCollider.enabled = false;
                 ChangeState(State.Die);
-            }else if (Hp >= 0 && Hp < MaxHp)
+            }
+            else if (hp < MaxHp)
             {
-                
                 if (!animator.GetBool("Hit")) { ChangeState(State.Hit); } 
-                if (traceTarget is null)
+                if (traceTarget == null)
                 {
                     traceTarget = GameManager.Instance.player.gameObject;
                 }
@@ -67,6 +67,7 @@ public class Monster : MonoBehaviour, IDamagable
     {
         meshCollider.enabled = true;
         ChangeState(curState);
+        traceTarget = null;
     }
     protected void ChangeState(State nextState)
     {
@@ -78,6 +79,7 @@ public class Monster : MonoBehaviour, IDamagable
     {
         Vector3 onwertransform = transform.position;
         onwertransform.y = transform.position.y + 1f;
+
         if (traceTarget == null)
         {
             Collider[] target = Physics.OverlapSphere(onwertransform, TargetInRage, TargetLayerMask);

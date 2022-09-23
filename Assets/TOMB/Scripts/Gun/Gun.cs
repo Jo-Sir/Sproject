@@ -55,7 +55,7 @@ public class Gun : MonoBehaviour
                         hiteff = ObjectPoolManager.Instance.GetObject(KeyType.EffMonsterHit);
                     }
                     else
-                    { 
+                    {
                         hiteff = ObjectPoolManager.Instance.GetObject(KeyType.EffObjectHit);
                     }
                     hiteff.transform.position = hit.point;
