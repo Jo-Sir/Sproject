@@ -29,7 +29,8 @@ public class PlayerMovement : MonoBehaviour
         moveH = Input.GetAxis("Horizontal");
         moveV = Input.GetAxis("Vertical");
         float distance = (characterController.velocity - Vector3.zero).sqrMagnitude;
-        if (!groundChecker.IsGrounded) { moveY += Physics.gravity.y * Time.deltaTime; }
+        if (groundChecker.IsGrounded) { moveY = 0; }
+        else { moveY += Physics.gravity.y * Time.deltaTime; }
         if ((Input.GetButtonDown("Jump") && distance != 0 && ableStep)) { StartCoroutine(Evasion()); }
         moveVec = (transform.right * moveH + transform.forward * moveV) * moveSpeed;
         moveVec.y = moveY;
@@ -38,7 +39,7 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator Evasion()
     {
         ableStep = false;
-        for (int i = 0; i < 30; i++)
+        for (int i = 0; i < 100; i+=10)
         {
             moveVec = (transform.right * moveH + transform.forward * moveV) * i;
             characterController.Move(moveVec * Time.deltaTime);

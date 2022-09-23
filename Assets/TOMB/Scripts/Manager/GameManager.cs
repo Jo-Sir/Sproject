@@ -8,19 +8,18 @@ public class GameManager : Singleton<GameManager>
     public UIController uI;
     public PlayerController player;
     public GunController gunController;
-    private MeshCollider mapcollider;
+    private Collider mapcollider;
     [Range(0f, 2000f)] public float mouseSensitivity;
     public int spwanCount;
     public int stageCount;
     private new void Awake()
     {
         base.Awake();
-        mapcollider = map.GetComponent<MeshCollider>();
+        mapcollider = map.GetComponent<Collider>();
     }
     private void Start()
     {
-        stageCount = 4;
-        // StageStart();
+        StageStart();
     }
     public void StageStart()
     {

@@ -5859,7 +5859,7 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  targetInRage: 3.8
+  targetInRage: 10
   attackRange: 1.9
 --- !u!195 &1008529938115788885
 NavMeshAgent:

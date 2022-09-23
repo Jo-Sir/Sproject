@@ -332,13 +332,13 @@ MonoBehaviour:
   keyType: 3
   maxHp: 100
   hp: 0
-  moveSpeed: 2.5
-  attackDamage: 1
+  moveSpeed: 5
+  attackDamage: 10
   attackPattern: 4
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  targetInRage: 3.7
+  targetInRage: 10
   attackRange: 1.7
 --- !u!195 &187269079
 NavMeshAgent:

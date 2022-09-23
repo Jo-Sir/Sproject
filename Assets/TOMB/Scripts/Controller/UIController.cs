@@ -78,5 +78,6 @@ public class UIController : MonoBehaviour
             hpbar.fillAmount = i;
             yield return null;
         }
+        damageBar.fillAmount = hpbar.fillAmount;
     }
 }
