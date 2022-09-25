@@ -49,5 +49,5 @@ MonoBehaviour:
   player: {fileID: 0}
   gunController: {fileID: 0}
   mouseSensitivity: 889
-  spwanCount: 100
+  spwanCount: 400
   stageCount: 3
