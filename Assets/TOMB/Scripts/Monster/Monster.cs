@@ -50,7 +50,7 @@ public class Monster : MonoBehaviour, IDamagable
                 if (!animator.GetBool("Hit")) { ChangeState(State.Hit); } 
                 if (traceTarget == null)
                 {
-                    traceTarget = GameManager.Instance.player.gameObject;
+                    traceTarget = PlayerManager.Instance.player.gameObject;
                 }
             }
         }

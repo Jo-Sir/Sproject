@@ -10,10 +10,23 @@ public class PlayerController : MonoBehaviour, IDamagable
     [SerializeField, Range(1f, 10f)] private float moveSpeed = 5f;
     [SerializeField] private float maxHp;
     [SerializeField] private float hp;
+    private bool isDie = false;
     private Animator animator;
     public float MaxHp { get { return maxHp; } }
-    public float Hp { get { return hp; } }
+    public float Hp 
+    {
+        set 
+        {
+            hp = value;
+            if (hp <= 0)
+            {
+                Die();
+            }
+        }
+        get { return hp; } 
+    }
     public float MoveSpeed { get { return moveSpeed; } }
+    public bool IsDie { set { isDie = value; } get { return isDie; } }
     public Animator Animator { set { animator = value; } get { return animator; } }
     private void Awake()
     {
@@ -21,17 +34,36 @@ public class PlayerController : MonoBehaviour, IDamagable
         Cursor.lockState = CursorLockMode.Locked;
         hp = MaxHp;
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.F10))
+        {
+            Die();
+        }
+        if (Input.GetKeyDown(KeyCode.F9))
+        {
+            PlayerManager.Instance.playerUI.GameClear();
+        }
+    }
+    private void Die()
+    {
+        isDie = true;
+        PlayerManager.Instance.playerUI.IsDie();
+        Debug.Log("메인화면으로 이동함");
+    }
     public void HpHeal(float heal)
     {
         if (Hp == MaxHp) { return; }
-        hp += heal;
+        Hp += heal;
         if (Hp > MaxHp) { hp = MaxHp; }
-        GameManager.Instance.uI.changeHpBar?.Invoke(Hp);
+        PlayerManager.Instance.playerUI.changeHpBar?.Invoke(Hp);
     }
-    
     public void TakeDamage(float damage)
     {
-        hp -= damage;
-        GameManager.Instance.uI.changeHpBar?.Invoke(Hp);
+        if (Hp > 0)
+        { 
+            Hp -= damage;
+            PlayerManager.Instance.playerUI.changeHpBar?.Invoke(Hp);
+        }
     }
 }

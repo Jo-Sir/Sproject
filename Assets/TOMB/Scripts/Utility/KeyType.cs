@@ -5,5 +5,5 @@ public enum KeyType
     // Monster 2~5
     MonsterScorpionKing, MonsterGolemIce, MonsterQueenWorm, BoosMonster,
     // Effect 6~
-    EffMonsterHit, EffObjectHit
+    EffMonsterHit, EffObjectHit, Effroket
 }

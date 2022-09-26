@@ -44,10 +44,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 708979164edad864d802227e643ad1ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  map: {fileID: 0}
-  uI: {fileID: 0}
-  player: {fileID: 0}
-  gunController: {fileID: 0}
-  mouseSensitivity: 889
+  map: {fileID: 7008985006158660556, guid: 375a370d8aad43c46af57f48d4febae1, type: 3}
+  playerUI: {fileID: 460336243873218715, guid: d0b28a64c693e6647b3286cbb7ecb5ad, type: 3}
+  player: {fileID: 995849616, guid: aa50e6e27f463204ea45b60505aacda9, type: 3}
+  gunController: {fileID: 4641999904861768683, guid: 6e1c9512ac0e4da45852110aa4131482, type: 3}
+  mouseSensitivity: 787
   spwanCount: 400
   stageCount: 3

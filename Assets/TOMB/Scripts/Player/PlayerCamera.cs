@@ -18,7 +18,7 @@ public class PlayerCamera : MonoBehaviour
     }
     private void Update()
     {
-        Look();
+        if (!PlayerManager.Instance.player.IsDie) { Look(); }
     }
 
     private void Look()

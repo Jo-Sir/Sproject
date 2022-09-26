@@ -7,6 +7,6 @@ public class AmmoItem : DropItem
     [SerializeField] private int ammo;
     public override void Use()
     {
-        GameManager.Instance.gunController.TotalAmmoUp(ammo);
+        PlayerManager.Instance.gunController.TotalAmmoUp(ammo);
     }
 }

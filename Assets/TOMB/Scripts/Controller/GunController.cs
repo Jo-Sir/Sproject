@@ -22,14 +22,13 @@ public class GunController : MonoBehaviour
         curGunNum = 0;
         curGun.gameObject.SetActive(true);
         SwapGun(curGunNum + 1);
-        changeUI = GameManager.Instance.uI.changeUIText;// ¿Ö¾È‰Î?
     }
     private void Update()
     {
-        if (IsAction)
+        if (IsAction && !PlayerManager.Instance.player.IsDie)
         { 
             ShotDivision(curGunNum);
-            if ((Input.inputString.Equals("1") || Input.inputString.Equals("2") || Input.inputString.Equals("3")))
+            if ((Input.inputString.Equals("1") || Input.inputString.Equals("2") || Input.inputString.Equals("3") /*|| Input.inputString.Equals("4")*/))
             {
                 if (int.Parse(Input.inputString)!= (curGunNum + 1))
                 { 
@@ -101,11 +100,11 @@ public class GunController : MonoBehaviour
     public void ChangeAmmoText()
     {
         // changeUI?.Invoke(curGun.CurBullet, curGun.TotalBullet);
-        GameManager.Instance.uI.changeUIText?.Invoke(curGun.CurBullet, curGun.TotalBullet);
+        PlayerManager.Instance.playerUI.changeUIText?.Invoke(curGun.CurBullet, curGun.TotalBullet);
     }
     public void ChangeGunsImage()
     {
         // changeUI?.Invoke(curGun.CurBullet, curGun.TotalBullet);
-        GameManager.Instance.uI.changeGunImage?.Invoke(curGunNum);
+        PlayerManager.Instance.playerUI.changeGunImage?.Invoke(curGunNum);
     }
 }

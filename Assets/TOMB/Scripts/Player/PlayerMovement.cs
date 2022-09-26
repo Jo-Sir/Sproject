@@ -15,14 +15,17 @@ public class PlayerMovement : MonoBehaviour
     private GroundChecker groundChecker;
     private void Awake()
     {
-        moveSpeed = GameManager.Instance.player.MoveSpeed;
+        moveSpeed = PlayerManager.Instance.player.MoveSpeed;
         characterController = GetComponent<CharacterController>();
         groundChecker = GetComponent<GroundChecker>();
     }
 
     private void Update()
     {
-        Move();
+        if (!PlayerManager.Instance.player.IsDie)
+        { 
+            Move();
+        }
     }
     private void Move()
     {

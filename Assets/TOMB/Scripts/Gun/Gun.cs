@@ -35,36 +35,47 @@ public class Gun : MonoBehaviour
             curBullet--;
             ParticleOn();
             StartCoroutine(RateOfFire());
-            int bulletCount = 1;
-            int i = 0;
-            if (curGunNum == 2)
+            if (curGunNum != 3)
             {
-                bulletCount = 20;
+                int bulletCount = 1;
+                int i = 0;
+                if (curGunNum == 2)
+                {
+                    bulletCount = 20;
+                }
+                IDamagable target = null;
+                while (i < bulletCount)
+                {
+                    Vector3 direction = new Vector3(Random.Range(-0.05f, .05f), Random.Range(-0.05f, 0.05f), Random.Range(-0.05f, 0.05f));
+
+                    if (Physics.Raycast(cam.transform.position, cam.transform.forward + direction, out hit, Mathf.Infinity, layerMask))
+                    {
+                        GameObject hiteff;
+                        if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Monster"))
+                        {
+                            target = hit.transform.GetComponentInParent<IDamagable>();
+                            hiteff = ObjectPoolManager.Instance.GetObject(KeyType.EffMonsterHit);
+                        }
+                        else
+                        {
+                            hiteff = ObjectPoolManager.Instance.GetObject(KeyType.EffObjectHit);
+                        }
+                        hiteff.transform.position = hit.point;
+                        target?.TakeDamage(damage);
+                    }
+                    i++;
+                }
             }
-            IDamagable target = null;
-            while (i < bulletCount)
+            else 
             {
-                Vector3 direction = new Vector3(Random.Range(-0.05f, 0.05f), Random.Range(-0.05f, 0.05f), Random.Range(-0.05f, 0.05f)); ;
-              
+                Vector3 direction = new Vector3(Random.Range(-0.05f, .05f), Random.Range(-0.05f, 0.05f), Random.Range(-0.05f, 0.05f));
                 if (Physics.Raycast(cam.transform.position, cam.transform.forward + direction, out hit, Mathf.Infinity, layerMask))
                 {
                     GameObject hiteff;
-                    if (hit.transform.gameObject.layer == LayerMask.NameToLayer("Monster"))
-                    {
-                        target = hit.transform.GetComponentInParent<IDamagable>();
-                        hiteff = ObjectPoolManager.Instance.GetObject(KeyType.EffMonsterHit);
-                    }
-                    else
-                    {
-                        hiteff = ObjectPoolManager.Instance.GetObject(KeyType.EffObjectHit);
-                    }
+                    hiteff = ObjectPoolManager.Instance.GetObject(KeyType.Effroket);
                     hiteff.transform.position = hit.point;
-                    target?.TakeDamage(damage);
                 }
-                i++;
-                Debug.DrawRay(cam.transform.position, (transform.forward + direction) * 15f, Color.red, 1f);
             }
-            
         }
     }
     public void Reload(int curGunNum)
@@ -73,7 +84,10 @@ public class Gun : MonoBehaviour
         float subAmmo = -(curBullet - maxBullet);
         if (totalBullet <= subAmmo) { subAmmo = totalBullet; }
         curBullet += subAmmo;
-        totalBullet -= subAmmo;
+        if (curGunNum != 0)
+        { 
+            totalBullet -= subAmmo;
+        }
 
     }
     public void ReloadShotGun()
