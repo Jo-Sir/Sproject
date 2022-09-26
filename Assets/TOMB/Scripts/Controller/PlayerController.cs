@@ -20,7 +20,9 @@ public class PlayerController : MonoBehaviour, IDamagable
             hp = value;
             if (hp <= 0)
             {
-                Die();
+                isDie = true;
+                PlayerManager.Instance.playerUI.IsDie();
+                Invoke("Die", 2f);
             }
         }
         get { return hp; } 
@@ -38,7 +40,7 @@ public class PlayerController : MonoBehaviour, IDamagable
     {
         if (Input.GetKeyDown(KeyCode.F10))
         {
-            Die();
+            Hp -= 50;
         }
         if (Input.GetKeyDown(KeyCode.F9))
         {
@@ -47,9 +49,7 @@ public class PlayerController : MonoBehaviour, IDamagable
     }
     private void Die()
     {
-        isDie = true;
-        PlayerManager.Instance.playerUI.IsDie();
-        Debug.Log("메인화면으로 이동함");
+        GameManager.Instance.ReturnMain();   
     }
     public void HpHeal(float heal)
     {

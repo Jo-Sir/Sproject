@@ -12,7 +12,6 @@ public class PlayerManager : Singleton<PlayerManager>
     public int spwanCount;
     private new void Awake()
     {
-        base.Awake();
         mapcollider = spawnPosition.GetComponent<Collider>();
     }
     private void Start()

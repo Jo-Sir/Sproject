@@ -66,16 +66,6 @@ public class Gun : MonoBehaviour
                     i++;
                 }
             }
-            else 
-            {
-                Vector3 direction = new Vector3(Random.Range(-0.05f, .05f), Random.Range(-0.05f, 0.05f), Random.Range(-0.05f, 0.05f));
-                if (Physics.Raycast(cam.transform.position, cam.transform.forward + direction, out hit, Mathf.Infinity, layerMask))
-                {
-                    GameObject hiteff;
-                    hiteff = ObjectPoolManager.Instance.GetObject(KeyType.Effroket);
-                    hiteff.transform.position = hit.point;
-                }
-            }
         }
     }
     public void Reload(int curGunNum)

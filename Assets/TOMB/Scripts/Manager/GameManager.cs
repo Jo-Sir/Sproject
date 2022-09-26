@@ -5,15 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : Singleton<GameManager>
 {
-    [Range(0f, 2000f)] public float mouseSensitivity;
-
-    public void OnClickStart()
+    public float mouseSensitivity;
+    public void VolumeChange(float volume)
     {
-        SceneManager.LoadScene("NomalStage");
+        AudioListener.volume = volume;
     }
-    public void OnClickQuit()
+    public void ReturnMain()
     {
-        Debug.Log("¡æ∑·«‘");
-        Application.Quit();
+        ObjectPoolManager.Instance.returnObjectAll?.Invoke();
+        SceneManager.LoadScene("MainMenu");
     }
 }

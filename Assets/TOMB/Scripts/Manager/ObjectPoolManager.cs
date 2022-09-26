@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 [System.Serializable]
 public class ObjectData
@@ -16,6 +17,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     [SerializeField] private List<ObjectData> objectDatas = new List<ObjectData>();
     private Dictionary<KeyType, Stack<GameObject>> poolDict;
     private Dictionary<KeyType, ObjectData> dataDict;
+    public UnityAction returnObjectAll;
     private new void Awake()
     {
         base.Awake();

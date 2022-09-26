@@ -99,7 +99,6 @@ public class GunController : MonoBehaviour
     }
     public void ChangeAmmoText()
     {
-        // changeUI?.Invoke(curGun.CurBullet, curGun.TotalBullet);
         PlayerManager.Instance.playerUI.changeUIText?.Invoke(curGun.CurBullet, curGun.TotalBullet);
     }
     public void ChangeGunsImage()

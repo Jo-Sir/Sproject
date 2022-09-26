@@ -40,7 +40,7 @@ public class UIController : MonoBehaviour
         damageBar.fillAmount = 1f;
         alerts = alert.GetComponentsInChildren<CanvasRenderer>(true);
     }
-
+    #region Func
     public void TextAmmoChange(float curAmmo, float totalAmmo)
     {
         string strCurAmmo = curAmmo.ToString();
@@ -64,6 +64,7 @@ public class UIController : MonoBehaviour
         {
             alerts[i].gameObject.SetActive(true);
         }
+        Cursor.lockState = CursorLockMode.None;
         StartCoroutine(FadeOut());
     }
     public void GameStart()
@@ -96,6 +97,9 @@ public class UIController : MonoBehaviour
             StartCoroutine(UpdateRedHp(cent));
         }
     }
+    #endregion Func
+
+    #region IEnumerator
     private IEnumerator UpdateRedHp(float cent)
     {
         for (float i = damageBar.fillAmount; i > cent; i-=0.007f)
@@ -127,7 +131,7 @@ public class UIController : MonoBehaviour
     }
     private IEnumerator FadeIn()
     {
-        for (float f = 1f; f > 0; f -= 0.5f * Time.deltaTime)
+        for (float f = 1f; f > 0; f -= 0.7f * Time.deltaTime)
         {
             Color c = fade.GetComponentInChildren<Image>().color;
             c.a = f;
@@ -136,4 +140,5 @@ public class UIController : MonoBehaviour
         }
         PlayerManager.Instance.player.IsDie = false;
     }
+    #endregion IEnumerator
 }

@@ -62,6 +62,7 @@ public class Monster : MonoBehaviour, IDamagable
         meshCollider = GetComponentInChildren<MeshCollider>();
         Hp = MaxHp;
         curState = State.Idle;
+        ObjectPoolManager.Instance.returnObjectAll += objectReturn;
     }
     private void OnEnable()
     {
@@ -69,6 +70,7 @@ public class Monster : MonoBehaviour, IDamagable
         ChangeState(curState);
         traceTarget = null;
     }
+    #region Func
     protected void ChangeState(State nextState)
     {
         StopCoroutine(curState.ToString());
@@ -138,7 +140,12 @@ public class Monster : MonoBehaviour, IDamagable
     {
         OnAttack?.Invoke();
     }
-    private void OnDrawGizmosSelected()
+    private void objectReturn()
+    {
+        ObjectPoolManager.Instance.ReturnObject(this.gameObject, keyType);
+    }
+    #endregion Func
+    private void OnDrawGizmos()
     {
         //추적 범위
         Gizmos.color = Color.blue;

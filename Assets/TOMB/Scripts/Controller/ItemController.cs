@@ -8,11 +8,15 @@ public class ItemController : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private float range;
     [SerializeField] private KeyType keyType;
+    private void Awake()
+    {
+        ObjectPoolManager.Instance.returnObjectAll += objectReturn;
+    }
     private void Update()
     {
         PlayerCheck();
     }
-
+    #region Func
     private void PlayerCheck()
     {
         Collider[] target = Physics.OverlapSphere(transform.position, range, layerMask);
@@ -33,6 +37,11 @@ public class ItemController : MonoBehaviour
             }
         }
     }
+    private void objectReturn()
+    {
+        ObjectPoolManager.Instance.ReturnObject(this.gameObject, keyType);
+    }
+    #endregion Func
     private void OnDrawGizmos()
     {
         Gizmos.color = Color.green;
