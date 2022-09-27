@@ -25,7 +25,7 @@ public class GunController : MonoBehaviour
     }
     private void Update()
     {
-        if (IsAction && !PlayerManager.Instance.player.IsDie)
+        if ((IsAction && !PlayerManager.Instance.player.IsDie))
         { 
             ShotDivision(curGunNum);
             if ((Input.inputString.Equals("1") || Input.inputString.Equals("2") || Input.inputString.Equals("3") /*|| Input.inputString.Equals("4")*/))

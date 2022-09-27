@@ -8,6 +8,11 @@ public class SliderController : MonoBehaviour
 {
     [SerializeField] Slider mouseSlider;
     [SerializeField] Slider soundSlider;
+    private void Start()
+    {
+        mouseSlider.value = GameManager.Instance.mouseSensitivity / 2000f;
+        soundSlider.value = AudioListener.volume;
+    }
     private void Update()
     {
         SoundSlider();

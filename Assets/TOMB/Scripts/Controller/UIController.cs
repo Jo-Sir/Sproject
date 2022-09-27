@@ -17,6 +17,7 @@ public class UIController : MonoBehaviour
     public UnityAction<float, float> changeUIText;
     public UnityAction<int> changeGunImage;
     public UnityAction<float> changeHpBar;
+    private CanvasRenderer[] alerts;
     [SerializeField] private List<GunSpriteData> gunSpriteDatas = new List<GunSpriteData>();
     [SerializeField] private TextMeshProUGUI curAmmo;
     [SerializeField] private TextMeshProUGUI totalAmmo;
@@ -26,9 +27,12 @@ public class UIController : MonoBehaviour
     [SerializeField] private Image hpbar;
     [SerializeField] private Image damageBar;
     [SerializeField] private Image fade;
+    [SerializeField] private Image skillIcon;
+    [SerializeField] private Text skillCoolText;
     [SerializeField] private GameObject alert;
-    private CanvasRenderer[] alerts;
     [SerializeField] private float playerMaxHp;
+    private bool ableSkill = true;
+    public bool AbleSkill { get { return ableSkill; } }
 
     private void Awake()
     {
@@ -60,9 +64,12 @@ public class UIController : MonoBehaviour
     }
     public void IsDie()
     {
-        for (int i = 0; i < alerts.Length; i++)
+        if (PlayerManager.Instance.player.Hp <= 0)
         {
-            alerts[i].gameObject.SetActive(true);
+            for (int i = 0; i < alerts.Length; i++)
+            {
+                alerts[i].gameObject.SetActive(true);
+            }
         }
         Cursor.lockState = CursorLockMode.None;
         StartCoroutine(FadeOut());
@@ -97,6 +104,11 @@ public class UIController : MonoBehaviour
             StartCoroutine(UpdateRedHp(cent));
         }
     }
+
+    public void SkillCoolTimeStart(float skillcool)
+    {
+        StartCoroutine(CoolTime(skillcool));
+    }
     #endregion Func
 
     #region IEnumerator
@@ -121,7 +133,7 @@ public class UIController : MonoBehaviour
 
     private IEnumerator FadeOut()
     {
-        for (float f = 0f; f < 1; f += 0.5f * Time.deltaTime)
+        for (float f = 0f; f < 1; f += 0.5f * Time.unscaledDeltaTime)
         {
             Color c = fade.GetComponentInChildren<Image>().color;
             c.a = f;
@@ -131,7 +143,7 @@ public class UIController : MonoBehaviour
     }
     private IEnumerator FadeIn()
     {
-        for (float f = 1f; f > 0; f -= 0.7f * Time.deltaTime)
+        for (float f = 1f; f > 0; f -= 0.7f * Time.unscaledDeltaTime)
         {
             Color c = fade.GetComponentInChildren<Image>().color;
             c.a = f;
@@ -139,6 +151,20 @@ public class UIController : MonoBehaviour
             yield return null;
         }
         PlayerManager.Instance.player.IsDie = false;
+    }
+    private IEnumerator CoolTime(float coolTime)
+    {
+        coolTime += 1f;
+        ableSkill = false;
+        while (coolTime > 1.0f) 
+        {
+            coolTime -= Time.deltaTime;
+            skillIcon.fillAmount = (1.0f / coolTime);
+            skillCoolText.text = (coolTime-1f).ToString();
+            yield return new WaitForFixedUpdate(); 
+        }
+        skillCoolText.text = "";
+        ableSkill = true;
     }
     #endregion IEnumerator
 }

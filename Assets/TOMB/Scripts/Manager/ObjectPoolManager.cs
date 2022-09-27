@@ -20,7 +20,6 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     public UnityAction returnObjectAll;
     private new void Awake()
     {
-        base.Awake();
         Init();
     }
     private void Init()
