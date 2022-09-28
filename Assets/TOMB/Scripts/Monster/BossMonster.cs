@@ -8,6 +8,7 @@ public class BossMonster : Monster
     [SerializeField] private GameObject bossHpbar;
     [SerializeField] private Image hpbar;
     [SerializeField] private Image damageBar;
+    [SerializeField] private AudioController audioController;
     private bool produc = true;
     public override float Hp
     {
@@ -28,6 +29,11 @@ public class BossMonster : Monster
                 }
             }
         }
+    }
+    private new void Awake()
+    {
+        base.Awake();
+        audioController = GameObject.Find("BGM").GetComponent<AudioController>();
     }
     #region State
     private IEnumerator Idle()
@@ -50,7 +56,7 @@ public class BossMonster : Monster
     }
     private IEnumerator Trace()
     {
-        if (produc) { produc = false; ShowHpBar(); }
+        if (produc) { produc = false; ShowHpBar(); ChangeBGM(); }
         while (true)
         {
             animator.SetBool("Walk", (traceTarget != null));
@@ -136,6 +142,10 @@ public class BossMonster : Monster
             hpbar.fillAmount = cent;
             StartCoroutine(UpdateRedHp(cent));
         }
+    }
+    private void ChangeBGM()
+    {
+        audioController.BossTrace();
     }
     #endregion Func
     #region UIIEnumerator

@@ -14,12 +14,14 @@ public class MainMenuController : MonoBehaviour
     [Header("Options Panel")]
     public GameObject MainOptionsPanel;
     public GameObject StartGameOptionsPanel;
+    public AudioClip[] audioClips;
+    private AudioSource audioSource;
 
     // Use this for initialization
     void Start()
     {
         anim = GetComponent<Animator>();
-
+        audioSource = GetComponent<AudioSource>();
         //new key
         //PlayerPrefs.SetInt("quickSaveSlot", quickSaveSlotID);
     }
@@ -35,7 +37,6 @@ public class MainMenuController : MonoBehaviour
             AudioListener.volume = 1;
         }
     }
-
     #region Open Different panels
 
     public void OnClickOptions()
@@ -92,14 +93,18 @@ public class MainMenuController : MonoBehaviour
     #region Sounds
     public void PlayHoverClip()
     {
-
+        audioSource.clip = audioClips[1];
+        AudioPlay();
     }
 
     void PlayClickSound()
     {
-
+        audioSource.clip = audioClips[0];
+        AudioPlay();
     }
 
+    private void AudioPlay()
+    { audioSource.Play(); }
 
     #endregion
 }

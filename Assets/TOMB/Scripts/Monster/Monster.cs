@@ -55,7 +55,7 @@ public class Monster : MonoBehaviour, IDamagable
             }
         }
     }
-    private void Awake()
+    protected void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();

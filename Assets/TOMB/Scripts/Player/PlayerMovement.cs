@@ -40,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private IEnumerator Evasion()
     {   
-        PlayerManager.Instance.playerUI.SkillCoolTimeStart(3f);
+        PlayerManager.Instance.playerUI.SkillCoolTimeStart(0f);
         for (int i = 0; i < 50; i+=10)
         {
             moveVec = (transform.right * moveH + transform.forward * moveV) * i;
