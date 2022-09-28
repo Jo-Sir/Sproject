@@ -1,13 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BossMonster : Monster
 {
-    private void OnDisable()
-    {
-        Debug.Log("보스사망");
-    }
+    [SerializeField] private GameObject bossHpbar;
+    [SerializeField] private Image hpbar;
+    [SerializeField] private Image damageBar;
+    private bool produc = true;
     public override float Hp
     {
         get => base.Hp;
@@ -49,6 +50,7 @@ public class BossMonster : Monster
     }
     private IEnumerator Trace()
     {
+        if (produc) { produc = false; ShowHpBar(); }
         while (true)
         {
             animator.SetBool("Walk", (traceTarget != null));
@@ -96,9 +98,66 @@ public class BossMonster : Monster
         agent.ResetPath();
         animator.SetBool("Hit", false);
         animator.SetTrigger("Die");
-        yield return new WaitForSeconds(1.5f);
-        DropItem();
-        ObjectPoolManager.Instance.ReturnObject(this.gameObject, keyType);
+        PlayerManager.Instance.playerUI.GameClear();
+        yield return new WaitForSeconds(2f);
+        GameManager.Instance.ReturnMain();
     }
     #endregion State
+    #region Func
+    public override void TakeDamage(float damage)
+    {
+        if (Hp > 0)
+        {
+            if (Hp < damage)
+            {
+                Hp = 0;
+            }
+            else
+            {
+                Hp -= damage;
+            }
+            UpdateHp(Hp);
+        }
+    }
+    private void ShowHpBar()
+    {
+        bossHpbar.SetActive(true);
+        UpdateHp(Hp);
+    }
+    private void UpdateHp(float curHp)
+    {
+        float cent = curHp / MaxHp;
+        if (hpbar.fillAmount == cent)
+        { // 시작
+            StartCoroutine(UpdateGreenHp(cent));
+        }
+        else
+        { // 맞았을때
+            hpbar.fillAmount = cent;
+            StartCoroutine(UpdateRedHp(cent));
+        }
+    }
+    #endregion Func
+    #region UIIEnumerator
+    private IEnumerator UpdateRedHp(float cent)
+    {
+        for (float i = damageBar.fillAmount; i > cent; i -= 0.002f)
+        {
+            damageBar.fillAmount = i;
+            yield return null;
+        }
+        damageBar.fillAmount = hpbar.fillAmount - 0.005f;
+    }
+    private IEnumerator UpdateGreenHp(float cent)
+    {
+        damageBar.fillAmount = 0;
+        for (float i = 0; i < cent; i += 0.007f)
+        {
+            hpbar.fillAmount = i;
+            yield return null;
+        }
+        hpbar.fillAmount = 1f;
+        damageBar.fillAmount = hpbar.fillAmount - 0.005f;
+    }
+    #endregion UIIEnumerator
 }

@@ -90,6 +90,7 @@ public class UIController : MonoBehaviour
         }
         text.color = new Color32(222, 182, 102, 255);
         text.text = "Clear";
+        StartCoroutine(FadeOut());
     }
     private void UpdateHp(float curHp)
     {

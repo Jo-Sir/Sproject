@@ -18,7 +18,7 @@ public class Monster : MonoBehaviour, IDamagable
     [SerializeField] protected int attackPattern;
     [Header("target & range")]
     [SerializeField] protected LayerMask targetLayerMask;
-    [SerializeField, Range(0f, 50f)] protected float targetInRage;
+    [SerializeField, Range(0f, 100f)] protected float targetInRage;
     [SerializeField, Range(0f, 50f)] protected float attackRange;
     protected GameObject traceTarget = null;
     protected GameObject attackTarget = null;
@@ -122,7 +122,7 @@ public class Monster : MonoBehaviour, IDamagable
             obj.transform.position = itemposition;
         }
     }
-    public void TakeDamage(float damage)
+    public virtual void TakeDamage(float damage)
     {
         if (Hp > 0)
         {

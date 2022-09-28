@@ -5809,7 +5809,7 @@ Transform:
   m_GameObject: {fileID: 6790100607610987470}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.6783153, y: 0, z: -6.3568316}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 7701517933777925983}
@@ -5851,16 +5851,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyType: 6
-  maxHp: 200
+  maxHp: 2000
   hp: 0
-  moveSpeed: 3.5
-  attackDamage: 3.5
+  moveSpeed: 5
+  attackDamage: 20
   attackPattern: 4
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  targetInRage: 10
-  attackRange: 5
+  targetInRage: 100
+  attackRange: 10
+  bossHpbar: {fileID: 0}
+  hpbar: {fileID: 0}
+  damageBar: {fileID: 0}
 --- !u!195 &1008529938115788885
 NavMeshAgent:
   m_ObjectHideFlags: 0

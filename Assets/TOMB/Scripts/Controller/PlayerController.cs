@@ -10,9 +10,11 @@ public class PlayerController : MonoBehaviour, IDamagable
     [SerializeField, Range(1f, 10f)] private float moveSpeed = 5f;
     [SerializeField] private float maxHp;
     [SerializeField] private float hp;
+    [SerializeField] private AudioClip[] audioClips;
     private bool isDie = false;
     private Animator animator;
     public float MaxHp { get { return maxHp; } }
+    public AudioClip[] AudioClip { get { return audioClips; } }
     public float Hp 
     {
         set 
