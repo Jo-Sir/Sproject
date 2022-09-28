@@ -71,6 +71,14 @@ public class GunController : MonoBehaviour
             curGun.Reload(curGunNum);
         }
     }
+    public void SkillReload()
+    {
+        if (curGun.CurBullet == curGun.MaxBullet) return;
+        if (curGun.TotalBullet <= 0) return;
+        curGun.Reload(curGunNum);
+        ChangeAmmoText();
+
+    }
     private void ShotDivision(int value)
     {
         if (curGunNum == 0)

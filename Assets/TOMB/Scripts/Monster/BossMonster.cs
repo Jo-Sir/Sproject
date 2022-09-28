@@ -24,7 +24,7 @@ public class BossMonster : Monster
                 ChangeState(State.Hit);
                 if (Hp <= MaxHp * 0.5f)
                 {
-                    moveSpeed *= 2f;
+                    moveSpeed = 10f;
                 }
             }
         }

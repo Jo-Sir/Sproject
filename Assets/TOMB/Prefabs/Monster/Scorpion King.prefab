@@ -233,7 +233,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7602526484265803688}
   - component: {fileID: 4011906437610723287}
-  - component: {fileID: 1077198735}
   m_Layer: 6
   m_Name: Scorpion King
   m_TagString: Untagged
@@ -351,20 +350,6 @@ SkinnedMeshRenderer:
     m_Center: {x: -0.30134308, y: -1.242239, z: 0.00009196997}
     m_Extent: {x: 1.7004405, y: 1.9396689, z: 1.6300828}
   m_DirtyAABB: 0
---- !u!64 &1077198735
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 583009692116593563}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 4
-  m_Convex: 1
-  m_CookingOptions: 30
-  m_Mesh: {fileID: 7748059413477995457, guid: 843e3ce816742fc4bbddd526666f9641, type: 3}
 --- !u!1 &1278060304793319902
 GameObject:
   m_ObjectHideFlags: 0
@@ -440,6 +425,7 @@ GameObject:
   - component: {fileID: 5639562802614314692}
   - component: {fileID: -185269362685311500}
   - component: {fileID: 1034720786}
+  - component: {fileID: 1107863886004756747}
   m_Layer: 6
   m_Name: Scorpion King
   m_TagString: Untagged
@@ -510,7 +496,7 @@ MonoBehaviour:
   targetLayerMask:
     serializedVersion: 2
     m_Bits: 8
-  targetInRage: 10
+  targetInRage: 25
   attackRange: 5
 --- !u!195 &1034720786
 NavMeshAgent:
@@ -534,6 +520,20 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!136 &1107863886004756747
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1434462475060291076}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 1
+  m_Height: 3
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.5, z: 0}
 --- !u!1 &1776687229310780970
 GameObject:
   m_ObjectHideFlags: 0

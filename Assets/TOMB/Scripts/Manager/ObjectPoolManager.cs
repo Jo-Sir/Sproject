@@ -18,6 +18,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     private Dictionary<KeyType, Stack<GameObject>> poolDict;
     private Dictionary<KeyType, ObjectData> dataDict;
     public UnityAction returnObjectAll;
+
     private new void Awake()
     {
         Init();
@@ -53,7 +54,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     }
     private void CreateObject(ObjectData data)
     {
-        
+
         Stack<GameObject> pool = new Stack<GameObject>(data.maxCount);
         // 넣을 컨테이너 정보 가져오기
         GameObject poolobj = GameObject.Find(data.key.ToString()); //이것도 파인드 안하고
@@ -67,7 +68,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
         }
         // 키값이 없으면
         if (!poolDict.TryGetValue(data.key, out var poolkey))
-        { 
+        {
             // 풀딕셔너리와 데이터 딕셔너리에 키와 값 추가
             poolDict.Add(data.key, pool);
             dataDict.Add(data.key, data);
@@ -105,7 +106,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     public void ReturnObject(GameObject obj, KeyType key)
     {
         // 풀 딕셔너리에 키 정보가 없으면 부숨
-        if (!poolDict.TryGetValue(key , out var pool))
+        if (!poolDict.TryGetValue(key, out var pool))
         {
             Destroy(obj);
             return;

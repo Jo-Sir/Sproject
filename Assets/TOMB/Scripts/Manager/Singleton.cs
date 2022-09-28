@@ -2,9 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
+public class Singleton<T> : MonoBehaviour where T : Singleton<T>
 {
-    private static T instance;
+    protected static T instance;
     public static T Instance
     {
         get
@@ -22,10 +22,14 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
                 {
                     instance = obj.GetComponent<T>();
                 }
+                
             }
             return instance;
         }
     }
-    public void Awake() { DontDestroyOnLoad(gameObject); }
+    protected void Awake()
+    {
+        DontDestroyOnLoad(Instance);
+    }
 }
 

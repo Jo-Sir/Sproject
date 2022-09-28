@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour, IDamagable
     {
         if (Input.GetKeyDown(KeyCode.F10))
         {
-            Hp -= 50;
+            GameManager.Instance.ReturnMain();
         }
         if (Input.GetKeyDown(KeyCode.F9))
         {

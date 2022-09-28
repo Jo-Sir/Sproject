@@ -9,10 +9,8 @@ public class PlayerCamera : MonoBehaviour
     private float xRotation = 0f;
     private float mouseX;
     private float mouseY;
-    private float mouseSensitivity;
     private void Start()
     {
-        mouseSensitivity = GameManager.Instance.mouseSensitivity;
         // 마우스 안보이게 잠금
         Cursor.lockState = CursorLockMode.Locked;
     }
@@ -23,8 +21,8 @@ public class PlayerCamera : MonoBehaviour
 
     private void Look()
     {
-        mouseX = Input.GetAxis("Mouse X") * mouseSensitivity * Time.deltaTime;
-        mouseY = Input.GetAxis("Mouse Y") * mouseSensitivity * Time.deltaTime;
+        mouseX = Input.GetAxis("Mouse X") * GameManager.Instance.mouseSensitivity * Time.deltaTime;
+        mouseY = Input.GetAxis("Mouse Y") * GameManager.Instance.mouseSensitivity * Time.deltaTime;
 
         playerBody.Rotate(Vector3.up * mouseX);
         xRotation -= mouseY;

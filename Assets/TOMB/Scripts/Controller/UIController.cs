@@ -76,7 +76,7 @@ public class UIController : MonoBehaviour
     }
     public void GameStart()
     {
-        PlayerManager.Instance.player.IsDie = true;
+        //PlayerManager.Instance.player.IsDie = true;
         Color a = fade.GetComponent<Image>().color;
         a.a = 1f;
         StartCoroutine(FadeIn());

@@ -24,7 +24,7 @@ public class Monster : MonoBehaviour, IDamagable
     protected GameObject attackTarget = null;
     protected NavMeshAgent agent;
     protected Animator animator;
-    protected MeshCollider meshCollider;
+    protected Collider _collider;
     protected UnityAction onAttack;
     public LayerMask TargetLayerMask { get { return targetLayerMask; } }
     public float AttackRange { get { return attackRange; } }
@@ -42,7 +42,7 @@ public class Monster : MonoBehaviour, IDamagable
             hp = value;
             if (hp <= 0)
             {
-                meshCollider.enabled = false;
+                _collider.enabled = false;
                 ChangeState(State.Die);
             }
             else if (hp < MaxHp)
@@ -59,14 +59,14 @@ public class Monster : MonoBehaviour, IDamagable
     {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-        meshCollider = GetComponentInChildren<MeshCollider>();
+        _collider = GetComponentInChildren<Collider>();
         Hp = MaxHp;
         curState = State.Idle;
         ObjectPoolManager.Instance.returnObjectAll += objectReturn;
     }
     private void OnEnable()
     {
-        meshCollider.enabled = true;
+        _collider.enabled = true;
         ChangeState(curState);
         traceTarget = null;
     }
@@ -145,7 +145,7 @@ public class Monster : MonoBehaviour, IDamagable
         ObjectPoolManager.Instance.ReturnObject(this.gameObject, keyType);
     }
     #endregion Func
-    private void OnDrawGizmos()
+    /*private void OnDrawGizmos()
     {
         //추적 범위
         Gizmos.color = Color.blue;
@@ -155,5 +155,5 @@ public class Monster : MonoBehaviour, IDamagable
         //공격 범위
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(onwertrasform, AttackRange);
-    }
+    }*/
 }

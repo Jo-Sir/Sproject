@@ -2226,9 +2226,9 @@ AnimatorStateMachine:
   m_AnyStateTransitions: []
   m_EntryTransitions: []
   m_StateMachineTransitions:
-  - first: {fileID: 5205455147809825384}
-    second: []
   - first: {fileID: 4912944675366554884}
+    second: []
+  - first: {fileID: 5205455147809825384}
     second: []
   m_StateMachineBehaviours: []
   m_AnyStatePosition: {x: 50, y: 20, z: 0}
