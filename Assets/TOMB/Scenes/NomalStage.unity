@@ -27,7 +27,7 @@ RenderSettings:
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: b283aa52011c4e147b1b17a77919a2ca, type: 2}
-  m_HaloStrength: 0.535
+  m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
   m_HaloTexture: {fileID: 0}
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.16241574, g: 0.15572622, b: 0.18691069, a: 1}
+  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -123,6 +123,11 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 23800000, guid: a5eb156db719cbf44a01e657e6cccf48, type: 2}
+--- !u!1 &266558821 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6790100607610987470, guid: 82517483db38c6f4e997cb11ab8ea57e, type: 3}
+  m_PrefabInstance: {fileID: 1889320567}
+  m_PrefabAsset: {fileID: 0}
 --- !u!114 &296457821 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 296457821, guid: aa50e6e27f463204ea45b60505aacda9, type: 3}
@@ -402,14 +407,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 995849616, guid: aa50e6e27f463204ea45b60505aacda9, type: 3}
-      propertyPath: audioClips.Array.data[1]
+    - target: {fileID: 1660742587, guid: aa50e6e27f463204ea45b60505aacda9, type: 3}
+      propertyPath: targetEnInfo
       value: 
-      objectReference: {fileID: 8300000, guid: 334e3110c9e038640bd34cd4e912e4c5, type: 3}
-    - target: {fileID: 1864502948053226948, guid: aa50e6e27f463204ea45b60505aacda9, type: 3}
-      propertyPath: damage
-      value: 999
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 266558821}
     - target: {fileID: 4455052855081852893, guid: aa50e6e27f463204ea45b60505aacda9, type: 3}
       propertyPath: m_RootOrder
       value: 5
@@ -457,14 +458,6 @@ PrefabInstance:
     - target: {fileID: 4456314033970760831, guid: aa50e6e27f463204ea45b60505aacda9, type: 3}
       propertyPath: m_Name
       value: Player
-      objectReference: {fileID: 0}
-    - target: {fileID: 5601339099502397883, guid: aa50e6e27f463204ea45b60505aacda9, type: 3}
-      propertyPath: m_audioClip
-      value: 
-      objectReference: {fileID: 8300000, guid: 50b9dae37ff371440929513639fc09d2, type: 3}
-    - target: {fileID: 7281357689470537033, guid: aa50e6e27f463204ea45b60505aacda9, type: 3}
-      propertyPath: damage
-      value: 999
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa50e6e27f463204ea45b60505aacda9, type: 3}
@@ -571,7 +564,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!114 &1298549001 stripped
 MonoBehaviour:
@@ -645,7 +638,7 @@ PrefabInstance:
       objectReference: {fileID: 8300000, guid: f29741343ab29fb4fa6b69c249bc9a53, type: 3}
     - target: {fileID: 6156587998573066612, guid: 82517483db38c6f4e997cb11ab8ea57e, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6156587998573066612, guid: 82517483db38c6f4e997cb11ab8ea57e, type: 3}
       propertyPath: m_LocalPosition.x

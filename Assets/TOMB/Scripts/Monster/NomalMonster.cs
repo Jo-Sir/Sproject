@@ -56,7 +56,6 @@ public class NomalMonster : Monster
         animator.SetInteger("RanAttack", Random.Range(0, attackPattern));
         yield return new WaitForSeconds(1f);
         ChangeState(State.Idle);
-
     }
     private IEnumerator Hit()
     {
