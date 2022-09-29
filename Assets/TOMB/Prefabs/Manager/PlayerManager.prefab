@@ -48,4 +48,5 @@ MonoBehaviour:
   playerUI: {fileID: 0}
   player: {fileID: 0}
   gunController: {fileID: 0}
+  gunsAudioController: {fileID: 0}
   spwanCount: 400

@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class AudioController : MonoBehaviour
 {
-    [SerializeField] private AudioClip[] audioClips;
-    private AudioSource audioSource;
-    private void Awake()
+    [SerializeField] protected AudioClip[] audioClips;
+    protected AudioSource audioSource;
+    protected void Awake()
     {
         audioSource = GetComponent<AudioSource>();
     }
@@ -15,8 +15,17 @@ public class AudioController : MonoBehaviour
         audioSource.clip = audioClips[0];
         AudioSourcePlay();
     }
-
-    private void AudioSourcePlay()
+    public void PlayerDie()
+    {
+        audioSource.clip = audioClips[1];
+        AudioSourcePlay();
+    }
+    public void Clear()
+    {
+        audioSource.clip = audioClips[2];
+        AudioSourcePlay();
+    }
+    protected void AudioSourcePlay()
     {
         audioSource.Play();
     }

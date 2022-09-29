@@ -8,8 +8,10 @@ public class ItemController : MonoBehaviour
     [SerializeField] private LayerMask layerMask;
     [SerializeField] private float range;
     [SerializeField] private KeyType keyType;
+    private AudioSource audioSource;
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         ObjectPoolManager.Instance.returnObjectAll += objectReturn;
     }
     private void Update()
@@ -22,6 +24,7 @@ public class ItemController : MonoBehaviour
         Collider[] target = Physics.OverlapSphere(transform.position, range, layerMask);
         if (target.Length > 0)
         {
+            audioSource.Play();
             Vector3 targetVec = new Vector3(target[0].transform.position.x, target[0].transform.position.y + 3f, target[0].transform.position.z);
             float distanceToTarget = (targetVec - transform.position).sqrMagnitude;
             if (distanceToTarget > Mathf.Pow(0.1f, 2))

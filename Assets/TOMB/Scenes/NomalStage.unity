@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0, g: 0, b: 0, a: 1}
+  m_IndirectSpecularColor: {r: 0.16241574, g: 0.15572622, b: 0.18691069, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -394,6 +394,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioClips:
   - {fileID: 8300000, guid: 04564fe9026946e49b48440a59143746, type: 3}
+  - {fileID: 8300000, guid: 9caabc84ae9f26a4f93c5a586f188296, type: 3}
 --- !u!1001 &947247441
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -401,9 +402,13 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 3837920691373913245, guid: aa50e6e27f463204ea45b60505aacda9, type: 3}
-      propertyPath: m_AnchoredPosition.y
-      value: 86.200195
+    - target: {fileID: 995849616, guid: aa50e6e27f463204ea45b60505aacda9, type: 3}
+      propertyPath: audioClips.Array.data[1]
+      value: 
+      objectReference: {fileID: 8300000, guid: 334e3110c9e038640bd34cd4e912e4c5, type: 3}
+    - target: {fileID: 1864502948053226948, guid: aa50e6e27f463204ea45b60505aacda9, type: 3}
+      propertyPath: damage
+      value: 999
       objectReference: {fileID: 0}
     - target: {fileID: 4455052855081852893, guid: aa50e6e27f463204ea45b60505aacda9, type: 3}
       propertyPath: m_RootOrder
@@ -453,8 +458,27 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 5601339099502397883, guid: aa50e6e27f463204ea45b60505aacda9, type: 3}
+      propertyPath: m_audioClip
+      value: 
+      objectReference: {fileID: 8300000, guid: 50b9dae37ff371440929513639fc09d2, type: 3}
+    - target: {fileID: 7281357689470537033, guid: aa50e6e27f463204ea45b60505aacda9, type: 3}
+      propertyPath: damage
+      value: 999
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: aa50e6e27f463204ea45b60505aacda9, type: 3}
+--- !u!114 &947247443 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 947247443, guid: aa50e6e27f463204ea45b60505aacda9, type: 3}
+  m_PrefabInstance: {fileID: 947247441}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6c80219d31d109040a250cb512a56a10, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1198801415
 GameObject:
   m_ObjectHideFlags: 0
@@ -611,21 +635,17 @@ PrefabInstance:
       propertyPath: damageBar
       value: 
       objectReference: {fileID: 1298549001}
+    - target: {fileID: 3654328488455437796, guid: 82517483db38c6f4e997cb11ab8ea57e, type: 3}
+      propertyPath: audioController
+      value: 
+      objectReference: {fileID: 884372468}
+    - target: {fileID: 3654328488455437796, guid: 82517483db38c6f4e997cb11ab8ea57e, type: 3}
+      propertyPath: audioClips.Array.data[2]
+      value: 
+      objectReference: {fileID: 8300000, guid: f29741343ab29fb4fa6b69c249bc9a53, type: 3}
     - target: {fileID: 6156587998573066612, guid: 82517483db38c6f4e997cb11ab8ea57e, type: 3}
       propertyPath: m_RootOrder
       value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6156587998573066612, guid: 82517483db38c6f4e997cb11ab8ea57e, type: 3}
-      propertyPath: m_LocalScale.x
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6156587998573066612, guid: 82517483db38c6f4e997cb11ab8ea57e, type: 3}
-      propertyPath: m_LocalScale.y
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6156587998573066612, guid: 82517483db38c6f4e997cb11ab8ea57e, type: 3}
-      propertyPath: m_LocalScale.z
-      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 6156587998573066612, guid: 82517483db38c6f4e997cb11ab8ea57e, type: 3}
       propertyPath: m_LocalPosition.x
@@ -895,5 +915,13 @@ PrefabInstance:
       propertyPath: spawnPosition
       value: 
       objectReference: {fileID: 361161575}
+    - target: {fileID: 8499841505656345815, guid: da29d7202313a624498d4645370c5498, type: 3}
+      propertyPath: audioController
+      value: 
+      objectReference: {fileID: 884372468}
+    - target: {fileID: 8499841505656345815, guid: da29d7202313a624498d4645370c5498, type: 3}
+      propertyPath: gunsAudioController
+      value: 
+      objectReference: {fileID: 947247443}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: da29d7202313a624498d4645370c5498, type: 3}

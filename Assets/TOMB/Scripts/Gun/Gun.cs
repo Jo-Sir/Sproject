@@ -88,6 +88,7 @@ public class Gun : MonoBehaviour
     public void AddTotalAmmo(float addAmmo)
     {
         totalBullet += addAmmo;
+        if (totalBullet >= 999) { totalBullet = 999; }
     }
     private void ParticleOn()
     {

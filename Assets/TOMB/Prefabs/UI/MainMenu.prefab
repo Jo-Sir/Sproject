@@ -2796,7 +2796,7 @@ GameObject:
   - component: {fileID: 5275653634732847299}
   - component: {fileID: 5328593958301888167}
   - component: {fileID: 1194362978}
-  - component: {fileID: 24254185}
+  - component: {fileID: 1437581960}
   m_Layer: 5
   m_Name: MainMenuCanvas
   m_TagString: Untagged
@@ -2927,9 +2927,9 @@ MonoBehaviour:
   MainOptionsPanel: {fileID: 5234722900626551263}
   StartGameOptionsPanel: {fileID: 5234608867728289309}
   audioClips:
-  - {fileID: 8300000, guid: 9e9480b4d07646942b555fd43f2a0f71, type: 3}
-  - {fileID: 8300000, guid: afe80d867ef6b8c4fa45b07f1f99533c, type: 3}
---- !u!82 &24254185
+  - {fileID: 8300000, guid: 11cc022ff50d64147ba45cb40f686961, type: 3}
+  - {fileID: 8300000, guid: 5254b61400703fb47ab6a9e34ec416c4, type: 3}
+--- !u!82 &1437581960
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2940,7 +2940,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 0
+  m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
   Loop: 0

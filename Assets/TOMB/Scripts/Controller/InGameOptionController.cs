@@ -29,10 +29,14 @@ public class InGameOptionController : MonoBehaviour
         backGround.SetActive(false);
         _AllOptions.SetActive(false);
     }
-    private IEnumerator ReturnMainMenu() 
+
+    public void ScreenModeChange()
     {
-        yield return new WaitForSecondsRealtime(2f);
-        GameManager.Instance.ReturnMain();
+        if (Screen.fullScreenMode != FullScreenMode.ExclusiveFullScreen)
+        { Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen; }
+        else { Screen.fullScreenMode = FullScreenMode.Windowed; }
+        /*Screen.SetResolution(1920, 1080, true);
+        Screen.SetResolution(1280, 720, false);*/
     }
     public void OnClickMainMenu()
     {
@@ -42,5 +46,10 @@ public class InGameOptionController : MonoBehaviour
     public void OnClickQuit()
     {
         Application.Quit();
+    }
+    private IEnumerator ReturnMainMenu() 
+    {
+        yield return new WaitForSecondsRealtime(2f);
+        GameManager.Instance.ReturnMain();
     }
 }

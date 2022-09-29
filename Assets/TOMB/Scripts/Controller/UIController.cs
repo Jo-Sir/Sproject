@@ -64,6 +64,7 @@ public class UIController : MonoBehaviour
     }
     public void IsDie()
     {
+        PlayerManager.Instance.audioController.PlayerDie();
         if (PlayerManager.Instance.player.Hp <= 0)
         {
             for (int i = 0; i < alerts.Length; i++)
@@ -77,9 +78,9 @@ public class UIController : MonoBehaviour
     public void GameStart()
     {
         //PlayerManager.Instance.player.IsDie = true;
-        Color a = fade.GetComponent<Image>().color;
-        a.a = 1f;
-        StartCoroutine(FadeIn());
+        /*Color a = fade.GetComponent<Image>().color;
+        a.a = 1f;*/
+        //StartCoroutine(FadeIn());
     }
     public void GameClear()
     {
@@ -144,6 +145,7 @@ public class UIController : MonoBehaviour
     }
     private IEnumerator FadeIn()
     {
+        yield return new WaitForSeconds(1f);
         for (float f = 1f; f > 0; f -= 0.7f * Time.unscaledDeltaTime)
         {
             Color c = fade.GetComponentInChildren<Image>().color;

@@ -39,7 +39,8 @@ public class PlayerMovement : MonoBehaviour
         characterController.Move(moveVec * Time.deltaTime);
     }
     private IEnumerator Evasion()
-    {   
+    {
+        PlayerManager.Instance.player.PlaySkillSound();
         PlayerManager.Instance.playerUI.SkillCoolTimeStart(0f);
         for (int i = 0; i < 50; i+=10)
         {
@@ -47,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
             characterController.Move(moveVec * Time.deltaTime);
             yield return null;
         }
+        
         PlayerManager.Instance.gunController.SkillReload();
     }
 

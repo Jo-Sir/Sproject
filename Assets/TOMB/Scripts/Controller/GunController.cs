@@ -7,13 +7,20 @@ using TMPro;
 
 public class GunController : MonoBehaviour
 {
+    #region Field
     [SerializeField] private Gun[] guns;
     private Gun curGun;
     private int curGunNum;
     private Animator playerAnimator;
-    private UnityAction<float, float> changeUI;
     private bool isAction = true; //false면행동불가 true면 행동가능
+    #endregion Field
+
+    #region Property
     public bool IsAction { set { isAction = value; } get { return isAction; } }
+    public int CurGunNum { get { return curGunNum; } }
+    #endregion Property
+
+    #region Unity
     private void Awake()
     {
         playerAnimator = GetComponentInChildren<Animator>();
@@ -21,6 +28,9 @@ public class GunController : MonoBehaviour
         curGun = guns[0];
         curGunNum = 0;
         curGun.gameObject.SetActive(true);
+    }
+    private void Start()
+    {
         SwapGun(curGunNum + 1);
     }
     private void Update()
@@ -31,7 +41,7 @@ public class GunController : MonoBehaviour
             if ((Input.inputString.Equals("1") || Input.inputString.Equals("2") || Input.inputString.Equals("3") /*|| Input.inputString.Equals("4")*/))
             {
                 if (int.Parse(Input.inputString)!= (curGunNum + 1))
-                { 
+                {
                     SwapGun(int.Parse(Input.inputString));
                 }
             }
@@ -41,6 +51,9 @@ public class GunController : MonoBehaviour
             }
         }
     }
+    #endregion Unity
+
+    #region privateFunc
     private void SwapGun(int value)
     { 
         value -= 1;
@@ -48,6 +61,7 @@ public class GunController : MonoBehaviour
         curGun = guns[value];
         curGun.gameObject.SetActive(true);
         curGunNum = value;
+        PlayerManager.Instance.gunsAudioController.audioClipsChange(curGunNum);
         ChangeGunsImage();
         ChangeAmmoText();
         playerAnimator.Play(curGunNum.ToString() + "_Swap");
@@ -71,14 +85,6 @@ public class GunController : MonoBehaviour
             curGun.Reload(curGunNum);
         }
     }
-    public void SkillReload()
-    {
-        if (curGun.CurBullet == curGun.MaxBullet) return;
-        if (curGun.TotalBullet <= 0) return;
-        curGun.Reload(curGunNum);
-        ChangeAmmoText();
-
-    }
     private void ShotDivision(int value)
     {
         if (curGunNum == 0)
@@ -96,6 +102,16 @@ public class GunController : MonoBehaviour
             }
         }
     }
+    #endregion privateFunc
+
+    #region publicFunc
+    public void SkillReload()
+    {
+        if (curGun.CurBullet == curGun.MaxBullet) return;
+        if (curGun.TotalBullet <= 0) return;
+        curGun.Reload(curGunNum);
+        ChangeAmmoText();
+    }
     public void ShotGunReload()
     {
         curGun.ReloadShotGun();
@@ -111,7 +127,7 @@ public class GunController : MonoBehaviour
     }
     public void ChangeGunsImage()
     {
-        // changeUI?.Invoke(curGun.CurBullet, curGun.TotalBullet);
         PlayerManager.Instance.playerUI.changeGunImage?.Invoke(curGunNum);
     }
+    #endregion publicFunc
 }

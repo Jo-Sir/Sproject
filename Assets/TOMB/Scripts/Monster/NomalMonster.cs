@@ -25,6 +25,7 @@ public class NomalMonster : Monster
     }
     private IEnumerator Trace()
     {
+        if (produc) { produc = false; PlayAggravationSound(); }
         while (true)
         {
             animator.SetBool("Walk", (traceTarget != null));
@@ -71,6 +72,7 @@ public class NomalMonster : Monster
     {
         agent.ResetPath();
         animator.SetBool("Hit", false);
+        PlayDieSound();
         animator.SetTrigger("Die");
         yield return new WaitForSeconds(1.5f);
         DropItem();

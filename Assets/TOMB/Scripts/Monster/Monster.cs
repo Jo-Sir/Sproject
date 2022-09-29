@@ -20,6 +20,11 @@ public class Monster : MonoBehaviour, IDamagable
     [SerializeField] protected LayerMask targetLayerMask;
     [SerializeField, Range(0f, 100f)] protected float targetInRage;
     [SerializeField, Range(0f, 50f)] protected float attackRange;
+    [Header("Audio")]
+    [SerializeField] protected AudioClip[] audioClips;
+
+    protected AudioSource audioSource;
+    protected bool produc = true;
     protected GameObject traceTarget = null;
     protected GameObject attackTarget = null;
     protected NavMeshAgent agent;
@@ -34,6 +39,8 @@ public class Monster : MonoBehaviour, IDamagable
     public Animator Animator { get { return animator; } }
     public float MaxHp { get { return maxHp; } }
     public UnityAction OnAttack { get { return onAttack; } }
+
+    #region Unity
     public virtual float Hp
     {
         get { return hp; }
@@ -60,6 +67,7 @@ public class Monster : MonoBehaviour, IDamagable
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
         _collider = GetComponentInChildren<Collider>();
+        audioSource = GetComponent<AudioSource>();
         Hp = MaxHp;
         curState = State.Idle;
         ObjectPoolManager.Instance.returnObjectAll += objectReturn;
@@ -70,6 +78,8 @@ public class Monster : MonoBehaviour, IDamagable
         ChangeState(curState);
         traceTarget = null;
     }
+    #endregion Unity
+
     #region Func
     protected void ChangeState(State nextState)
     {
@@ -138,6 +148,7 @@ public class Monster : MonoBehaviour, IDamagable
     }
     public void AttackFunc()
     {
+        PlayAttackSound();
         OnAttack?.Invoke();
     }
     private void objectReturn()
@@ -145,6 +156,30 @@ public class Monster : MonoBehaviour, IDamagable
         ObjectPoolManager.Instance.ReturnObject(this.gameObject, keyType);
     }
     #endregion Func
+
+    #region AudioFunc
+    protected void PlayAggravationSound()
+    {
+        audioSource.clip = audioClips[0];
+        PlayAudioSource();
+    }
+    public void PlayAttackSound()
+    {
+        audioSource.clip = audioClips[1];
+        PlayAudioSource();
+    }
+
+    protected void PlayDieSound()
+    {
+        audioSource.clip = audioClips[2];
+        PlayAudioSource();
+    }
+
+    private void PlayAudioSource()
+    {
+        audioSource.Play();
+    }
+    #endregion AudioFunc
     /*private void OnDrawGizmos()
     {
         //추적 범위

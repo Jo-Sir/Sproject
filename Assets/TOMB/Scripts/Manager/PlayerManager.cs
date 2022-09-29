@@ -8,6 +8,8 @@ public class PlayerManager : Singleton<PlayerManager>
     public UIController playerUI;
     public PlayerController player;
     public GunController gunController;
+    public GunsAudioController gunsAudioController;
+    public AudioController audioController;
     private Collider mapcollider;
     public int spwanCount;
     private new void Awake()
@@ -16,7 +18,7 @@ public class PlayerManager : Singleton<PlayerManager>
     }
     private void Start()
     {
-        playerUI.GameStart();
+        //playerUI.GameStart();
         StageStart();
     }
     public void StageStart()

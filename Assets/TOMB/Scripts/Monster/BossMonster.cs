@@ -9,13 +9,13 @@ public class BossMonster : Monster
     [SerializeField] private Image hpbar;
     [SerializeField] private Image damageBar;
     [SerializeField] private AudioController audioController;
-    private bool produc = true;
+    
     public override float Hp
     {
         get => base.Hp;
         set
         {
-            base.hp = value;
+            hp = value;
             if (hp <= 0)
             {
                 ChangeState(State.Die);
@@ -56,7 +56,7 @@ public class BossMonster : Monster
     }
     private IEnumerator Trace()
     {
-        if (produc) { produc = false; ShowHpBar(); ChangeBGM(); }
+        if (produc) { produc = false; ShowHpBar(); ChangeBGM(); PlayAggravationSound(); }
         while (true)
         {
             animator.SetBool("Walk", (traceTarget != null));
@@ -102,10 +102,11 @@ public class BossMonster : Monster
     private IEnumerator Die()
     {
         agent.ResetPath();
+        PlayDieSound();
+        PlayerManager.Instance.playerUI.GameClear();
         animator.SetBool("Hit", false);
         animator.SetTrigger("Die");
-        PlayerManager.Instance.playerUI.GameClear();
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(3f);
         GameManager.Instance.ReturnMain();
     }
     #endregion State
@@ -148,7 +149,8 @@ public class BossMonster : Monster
         audioController.BossTrace();
     }
     #endregion Func
-    #region UIIEnumerator
+
+    #region UI IEnumerator
     private IEnumerator UpdateRedHp(float cent)
     {
         for (float i = damageBar.fillAmount; i > cent; i -= 0.002f)
@@ -169,5 +171,5 @@ public class BossMonster : Monster
         hpbar.fillAmount = 1f;
         damageBar.fillAmount = hpbar.fillAmount - 0.005f;
     }
-    #endregion UIIEnumerator
+    #endregion UI IEnumerator
 }

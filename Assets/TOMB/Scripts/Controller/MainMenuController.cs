@@ -21,6 +21,7 @@ public class MainMenuController : MonoBehaviour
     void Start()
     {
         anim = GetComponent<Animator>();
+
         audioSource = GetComponent<AudioSource>();
         //new key
         //PlayerPrefs.SetInt("quickSaveSlot", quickSaveSlotID);

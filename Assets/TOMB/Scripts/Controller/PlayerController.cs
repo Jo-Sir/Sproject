@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour, IDamagable
     [SerializeField] private float maxHp;
     [SerializeField] private float hp;
     [SerializeField] private AudioClip[] audioClips;
+    private AudioSource audioSource;
     private bool isDie = false;
     private Animator animator;
     public float MaxHp { get { return maxHp; } }
@@ -24,7 +25,7 @@ public class PlayerController : MonoBehaviour, IDamagable
             {
                 isDie = true;
                 PlayerManager.Instance.playerUI.IsDie();
-                Invoke("Die", 2f);
+                Invoke("Die", 3f);
             }
         }
         get { return hp; } 
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour, IDamagable
     public Animator Animator { set { animator = value; } get { return animator; } }
     private void Awake()
     {
+        audioSource = GetComponent<AudioSource>();
         animator = GetComponentInChildren<Animator>();
         Cursor.lockState = CursorLockMode.Locked;
         hp = MaxHp;
@@ -67,5 +69,16 @@ public class PlayerController : MonoBehaviour, IDamagable
             Hp -= damage;
             PlayerManager.Instance.playerUI.changeHpBar?.Invoke(Hp);
         }
+    }
+    public void PlayWalkSound()
+    {
+        audioSource.clip = audioClips[0];
+        audioSource.Play();
+    }
+    public void PlaySkillSound()
+    {
+        audioSource.clip = audioClips[1];
+        audioSource.Play();
+        Invoke("PlayWalkSound", 0.5f);
     }
 }
