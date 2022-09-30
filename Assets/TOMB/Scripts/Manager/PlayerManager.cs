@@ -12,13 +12,13 @@ public class PlayerManager : Singleton<PlayerManager>
     public AudioController audioController;
     private Collider mapcollider;
     public int spwanCount;
+    
     private new void Awake()
     {
         mapcollider = spawnPosition.GetComponent<Collider>();
     }
     private void Start()
     {
-        //playerUI.GameStart();
         StageStart();
     }
     public void StageStart()

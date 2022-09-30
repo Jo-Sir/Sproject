@@ -5861,11 +5861,11 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   targetInRage: 100
-  attackRange: 10
+  attackRange: 12
   audioClips:
   - {fileID: 8300000, guid: badbabe5d69f4d149aa0ea16c1e7da86, type: 3}
   - {fileID: 8300000, guid: 93ebf8f37bfe4f947ac474959e659266, type: 3}
-  - {fileID: 8300000, guid: 93ebf8f37bfe4f947ac474959e659266, type: 3}
+  - {fileID: 8300000, guid: f29741343ab29fb4fa6b69c249bc9a53, type: 3}
   bossHpbar: {fileID: 0}
   hpbar: {fileID: 0}
   damageBar: {fileID: 0}

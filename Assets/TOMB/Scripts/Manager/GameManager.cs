@@ -10,7 +10,7 @@ public class GameManager : Singleton<GameManager>
     private new void Awake()
     {
         base.Awake();
-        mouseSensitivity = 800f;
+        mouseSensitivity = 400f;
         AudioListener.volume = 0.2f;
         SceneManager.sceneLoaded += LoadedsceneEvent;
     }

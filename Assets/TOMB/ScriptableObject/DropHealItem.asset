@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Heal
   prefab: {fileID: 4354149772327653934, guid: 9ee1d8d3be2665e45898e9fcfe09cd1f, type: 3}
-  heal: 50
+  heal: 30

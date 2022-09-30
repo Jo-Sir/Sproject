@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class InGameOptionController : MonoBehaviour
 {
     [SerializeField] private GameObject backGround;
     [SerializeField] private GameObject _AllOptions;
+    [SerializeField] private Text text;
     private bool isShowUI = false;
 
     private void Update()
@@ -28,15 +30,6 @@ public class InGameOptionController : MonoBehaviour
         isShowUI = false;
         backGround.SetActive(false);
         _AllOptions.SetActive(false);
-    }
-
-    public void ScreenModeChange()
-    {
-        if (Screen.fullScreenMode != FullScreenMode.ExclusiveFullScreen)
-        { Screen.fullScreenMode = FullScreenMode.ExclusiveFullScreen; }
-        else { Screen.fullScreenMode = FullScreenMode.Windowed; }
-        /*Screen.SetResolution(1920, 1080, true);
-        Screen.SetResolution(1280, 720, false);*/
     }
     public void OnClickMainMenu()
     {

@@ -7,7 +7,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour, IDamagable
 {
     [Header("stat")]
-    [SerializeField, Range(1f, 10f)] private float moveSpeed = 5f;
+    [SerializeField, Range(1f, 20f)] private float moveSpeed;
     [SerializeField] private float maxHp;
     [SerializeField] private float hp;
     [SerializeField] private AudioClip[] audioClips;
@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour, IDamagable
         set 
         {
             hp = value;
-            if (hp <= 0)
+            if (hp <= 0 && IsDie == false)
             {
                 isDie = true;
                 PlayerManager.Instance.playerUI.IsDie();

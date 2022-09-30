@@ -49,4 +49,5 @@ MonoBehaviour:
   player: {fileID: 0}
   gunController: {fileID: 0}
   gunsAudioController: {fileID: 0}
+  audioController: {fileID: 0}
   spwanCount: 400

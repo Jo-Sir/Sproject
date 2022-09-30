@@ -114,7 +114,6 @@ GameObject:
   - component: {fileID: 2938191079354364793}
   - component: {fileID: 2938191079354364792}
   - component: {fileID: 2938191079354364795}
-  - component: {fileID: 2938191079354364791}
   m_Layer: 0
   m_Name: Plane (4)
   m_TagString: Untagged
@@ -201,22 +200,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &2938191079354364791
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2938191079354364794}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &2938191079395046363
 GameObject:
   m_ObjectHideFlags: 0
@@ -229,7 +212,6 @@ GameObject:
   - component: {fileID: 2938191079395046358}
   - component: {fileID: 2938191079395046361}
   - component: {fileID: 2938191079395046360}
-  - component: {fileID: 2938191079395046356}
   m_Layer: 0
   m_Name: Plane (1)
   m_TagString: Untagged
@@ -316,22 +298,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &2938191079395046356
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2938191079395046363}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &2938191079494911081
 GameObject:
   m_ObjectHideFlags: 0
@@ -344,7 +310,6 @@ GameObject:
   - component: {fileID: 2938191079494911076}
   - component: {fileID: 2938191079494911079}
   - component: {fileID: 2938191079494911078}
-  - component: {fileID: 2938191079494911074}
   m_Layer: 0
   m_Name: Plane (3)
   m_TagString: Untagged
@@ -431,22 +396,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &2938191079494911074
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2938191079494911081}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &2938191079691649059
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,7 +485,6 @@ GameObject:
   - component: {fileID: 2938191079889867176}
   - component: {fileID: 2938191079889867179}
   - component: {fileID: 2938191079889867178}
-  - component: {fileID: 2938191079889867174}
   m_Layer: 0
   m_Name: Plane (2)
   m_TagString: Untagged
@@ -623,22 +571,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &2938191079889867174
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2938191079889867181}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1 &2938191080522408779
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,7 +583,6 @@ GameObject:
   - component: {fileID: 2938191080522408774}
   - component: {fileID: 2938191080522408777}
   - component: {fileID: 2938191080522408776}
-  - component: {fileID: 2938191080522408772}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Untagged
@@ -738,22 +669,6 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 10209, guid: 0000000000000000e000000000000000, type: 0}
---- !u!54 &2938191080522408772
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2938191080522408779}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 0
-  m_IsKinematic: 1
-  m_Interpolate: 0
-  m_Constraints: 0
-  m_CollisionDetection: 0
 --- !u!1001 &2938191078913200310
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6246,6 +6161,10 @@ PrefabInstance:
       value: 2147483647
       objectReference: {fileID: 0}
     - target: {fileID: 4421175906922085848, guid: d087a3c98ac4b6249b95b1c8a4d7bb49, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4421175906922085848, guid: d087a3c98ac4b6249b95b1c8a4d7bb49, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
@@ -10919,6 +10838,14 @@ PrefabInstance:
       propertyPath: m_StaticEditorFlags
       value: 2147483647
       objectReference: {fileID: 0}
+    - target: {fileID: 5296169676474334989, guid: 316fc8bb0b8ca2446a04006a335b54d2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 5296169676474334989, guid: 316fc8bb0b8ca2446a04006a335b54d2, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 37.61
+      objectReference: {fileID: 0}
     - target: {fileID: 5296169676474497659, guid: 316fc8bb0b8ca2446a04006a335b54d2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
@@ -11574,6 +11501,10 @@ PrefabInstance:
     - target: {fileID: 5556655937278431221, guid: 316fc8bb0b8ca2446a04006a335b54d2, type: 3}
       propertyPath: m_StaticEditorFlags
       value: 2147483647
+      objectReference: {fileID: 0}
+    - target: {fileID: 5556655937278697069, guid: 316fc8bb0b8ca2446a04006a335b54d2, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -41.28
       objectReference: {fileID: 0}
     - target: {fileID: 5992916379946210543, guid: 316fc8bb0b8ca2446a04006a335b54d2, type: 3}
       propertyPath: m_StaticEditorFlags

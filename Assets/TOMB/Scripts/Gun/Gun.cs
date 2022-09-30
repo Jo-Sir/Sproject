@@ -82,8 +82,10 @@ public class Gun : MonoBehaviour
     }
     public void ReloadShotGun()
     {
-        curBullet += 1;
-        totalBullet -= 1;
+        int bullet = 1;
+        if (totalBullet <= 0) { bullet = 0; }
+        curBullet += bullet;
+        totalBullet -= bullet;
     }
     public void AddTotalAmmo(float addAmmo)
     {

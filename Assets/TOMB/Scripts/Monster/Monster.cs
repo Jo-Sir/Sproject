@@ -31,6 +31,7 @@ public class Monster : MonoBehaviour, IDamagable
     protected Animator animator;
     protected Collider _collider;
     protected UnityAction onAttack;
+    
     public LayerMask TargetLayerMask { get { return targetLayerMask; } }
     public float AttackRange { get { return attackRange; } }
     public float AttackDamage { get { return attackDamage; } }
@@ -39,8 +40,6 @@ public class Monster : MonoBehaviour, IDamagable
     public Animator Animator { get { return animator; } }
     public float MaxHp { get { return maxHp; } }
     public UnityAction OnAttack { get { return onAttack; } }
-
-    #region Unity
     public virtual float Hp
     {
         get { return hp; }
@@ -62,6 +61,8 @@ public class Monster : MonoBehaviour, IDamagable
             }
         }
     }
+
+    #region Unity
     protected void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
@@ -71,7 +72,9 @@ public class Monster : MonoBehaviour, IDamagable
         Hp = MaxHp;
         curState = State.Idle;
         ObjectPoolManager.Instance.returnObjectAll += objectReturn;
+        ObjectPoolManager.Instance.traceAll += AllTrace;
     }
+
     private void OnEnable()
     {
         _collider.enabled = true;
@@ -125,8 +128,11 @@ public class Monster : MonoBehaviour, IDamagable
     {
         GameObject obj = null;
         if (Random.Range(0, 100) < 30)
-        { 
-            obj = ObjectPoolManager.Instance.GetObject((KeyType)Random.Range(0, 2));
+        {
+            int rand;
+            if (Random.Range(0, 100) < 70) { rand = 1; }
+            else { rand = 0; }
+            obj = ObjectPoolManager.Instance.GetObject((KeyType)rand);
             Vector3 itemposition = this.transform.position;
             itemposition.y = 1f;
             obj.transform.position = itemposition;
@@ -154,6 +160,13 @@ public class Monster : MonoBehaviour, IDamagable
     private void objectReturn()
     {
         ObjectPoolManager.Instance.ReturnObject(this.gameObject, keyType);
+    }
+
+    protected void AllTrace()
+    {
+        moveSpeed *= 0.5f;
+        attackDamage *= 0.5f; 
+        traceTarget = PlayerManager.Instance.player.gameObject;
     }
     #endregion Func
 

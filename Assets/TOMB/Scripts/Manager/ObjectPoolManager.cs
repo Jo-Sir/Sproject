@@ -18,7 +18,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     private Dictionary<KeyType, Stack<GameObject>> poolDict;
     private Dictionary<KeyType, ObjectData> dataDict;
     public UnityAction returnObjectAll;
-
+    public UnityAction traceAll;
     private new void Awake()
     {
         Init();

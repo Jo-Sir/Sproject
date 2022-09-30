@@ -20,9 +20,4 @@ public class LookAt : MonoBehaviour
 			this.transform.rotation = Quaternion.Lerp(this.transform.rotation, Quaternion.LookRotation(dir), Time.deltaTime * 10f);
 		}
 	}
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.red;
-		Gizmos.DrawLine(this.transform.position, targetEnInfo.transform.position);
-    }
 }

@@ -41,15 +41,13 @@ public class PlayerMovement : MonoBehaviour
     private IEnumerator Evasion()
     {
         PlayerManager.Instance.player.PlaySkillSound();
-        PlayerManager.Instance.playerUI.SkillCoolTimeStart(0f);
-        for (int i = 0; i < 50; i+=10)
+        PlayerManager.Instance.playerUI.SkillCoolTimeStart(4f);
+        for (int i = 0; i < 75; i+=10)
         {
             moveVec = (transform.right * moveH + transform.forward * moveV) * i;
             characterController.Move(moveVec * Time.deltaTime);
             yield return null;
         }
-        
-        PlayerManager.Instance.gunController.SkillReload();
+        // PlayerManager.Instance.gunController.SkillReload();
     }
-
 }

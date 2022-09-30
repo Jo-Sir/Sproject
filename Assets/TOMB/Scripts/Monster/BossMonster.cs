@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public class BossMonster : Monster
@@ -9,6 +10,8 @@ public class BossMonster : Monster
     [SerializeField] private Image hpbar;
     [SerializeField] private Image damageBar;
     [SerializeField] private AudioController audioController;
+
+    //event UnityAction onPlayerTrace;
     
     public override float Hp
     {
@@ -34,6 +37,7 @@ public class BossMonster : Monster
     {
         base.Awake();
         audioController = GameObject.Find("BGM").GetComponent<AudioController>();
+        //onPlayerTrace += ObjectPoolManager.Instance.traceAll; 왜안되지
     }
     #region State
     private IEnumerator Idle()
@@ -56,7 +60,7 @@ public class BossMonster : Monster
     }
     private IEnumerator Trace()
     {
-        if (produc) { produc = false; ShowHpBar(); ChangeBGM(); PlayAggravationSound(); }
+        if (produc) { produc = false; ShowHpBar(); ChangeBGM(); PlayAggravationSound(); ObjectPoolManager.Instance.traceAll?.Invoke(); }
         while (true)
         {
             animator.SetBool("Walk", (traceTarget != null));
