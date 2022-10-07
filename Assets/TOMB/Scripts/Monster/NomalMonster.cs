@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class NomalMonster : Monster
 {
+    private new void Awake()
+    {
+        base.Awake();
+        ObjectPoolManager.Instance.returnObjectAll += objectReturn;
+        ObjectPoolManager.Instance.traceAll += AllTrace;
+    }
     #region State
     private IEnumerator Idle()
     {

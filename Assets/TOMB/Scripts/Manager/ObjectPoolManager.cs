@@ -3,24 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
-
-[System.Serializable]
-public class ObjectData
-{
-    public KeyType key;
-    public GameObject prefab;
-    public int initCount;
-    public int maxCount;
-}
 public class ObjectPoolManager : Singleton<ObjectPoolManager>
 {
-    [SerializeField] private List<ObjectData> objectDatas = new List<ObjectData>();
+    [SerializeField] private List<ObjectData> objectDatas;
     private Dictionary<KeyType, Stack<GameObject>> poolDict;
     private Dictionary<KeyType, ObjectData> dataDict;
     public UnityAction returnObjectAll;
     public UnityAction traceAll;
     private new void Awake()
     {
+        base.Awake();
+        if (objectDatas == null)
+        {
+            Datas datas = GameObject.Find("Datas").GetComponent<Datas>();
+            objectDatas = datas.ObjectDatas;
+        }
         Init();
     }
     private void Init()
@@ -54,11 +51,10 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
     }
     private void CreateObject(ObjectData data)
     {
-
         Stack<GameObject> pool = new Stack<GameObject>(data.maxCount);
         // 넣을 컨테이너 정보 가져오기
-        GameObject poolobj = GameObject.Find(data.key.ToString()); //이것도 파인드 안하고
-        // 만든 컨테이너에 오브젝트 만들어서 넣기 넣기
+        GameObject poolobj = GameObject.Find(data.key.ToString());
+        // 만든 컨테이너에 오브젝트 만들어서 넣기
         for (int i = 0; i < data.initCount; i++)
         {
             GameObject obj = Instantiate(data.prefab);
@@ -92,6 +88,7 @@ public class ObjectPoolManager : Singleton<ObjectPoolManager>
         {
             if (dataDict.TryGetValue(key, out var data))
             {
+               // objectDatas.Fin
                 CreateObject(data);
                 // 만들고 풀 다시 확인
                 poolDict.TryGetValue(key, out var newpool);

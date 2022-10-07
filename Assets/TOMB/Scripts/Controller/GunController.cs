@@ -33,9 +33,11 @@ public class GunController : MonoBehaviour
     {
         SwapGun(curGunNum + 1);
     }
+
+
     private void Update()
     {
-        if ((IsAction && !PlayerManager.Instance.player.IsDie))
+        if ((IsAction && !PlayerManager.Instance.player.IsDie && Time.timeScale !=0))
         { 
             ShotDivision(curGunNum);
             if ((Input.inputString.Equals("1") || Input.inputString.Equals("2") || Input.inputString.Equals("3") /*|| Input.inputString.Equals("4")*/))

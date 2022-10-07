@@ -5851,7 +5851,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f3aee50eec8a66049bc0a32cb564d597, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyType: 6
+  keyType: 5
   maxHp: 2000
   hp: 0
   moveSpeed: 5

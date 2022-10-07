@@ -71,8 +71,6 @@ public class Monster : MonoBehaviour, IDamagable
         audioSource = GetComponent<AudioSource>();
         Hp = MaxHp;
         curState = State.Idle;
-        ObjectPoolManager.Instance.returnObjectAll += objectReturn;
-        ObjectPoolManager.Instance.traceAll += AllTrace;
     }
 
     private void OnEnable()
@@ -157,7 +155,7 @@ public class Monster : MonoBehaviour, IDamagable
         PlayAttackSound();
         OnAttack?.Invoke();
     }
-    private void objectReturn()
+    protected void objectReturn()
     {
         ObjectPoolManager.Instance.ReturnObject(this.gameObject, keyType);
     }

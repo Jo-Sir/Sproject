@@ -40,17 +40,6 @@ public class PlayerController : MonoBehaviour, IDamagable
         Cursor.lockState = CursorLockMode.Locked;
         hp = MaxHp;
     }
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.F10))
-        {
-            GameManager.Instance.ReturnMain();
-        }
-        if (Input.GetKeyDown(KeyCode.F9))
-        {
-            PlayerManager.Instance.playerUI.GameClear();
-        }
-    }
     private void Die()
     {
         GameManager.Instance.ReturnMain();   

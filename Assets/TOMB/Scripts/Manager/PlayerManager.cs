@@ -21,6 +21,13 @@ public class PlayerManager : Singleton<PlayerManager>
     {
         StageStart();
     }
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Tab))
+        {
+            ObjectPoolManager.Instance.returnObjectAll?.Invoke();
+        }
+    }
     public void StageStart()
     {
         for (int i = 0; i < spwanCount; i++)
